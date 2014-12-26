@@ -1,0 +1,217 @@
+/*
+Author : Qazi Ishtiyaq Ahmad
+URL : www.XtremeXtension.com
+*/
+
+
+body {
+	font: 15px/24px Georgia, Serif;
+}
+/* Links */
+a:link, a:visited {
+	text-decoration: none;
+	color: #147DB6;
+    outline: 0;
+}
+a:hover, a:focus, a:active {
+  color: #CC3300;
+}
+
+/* Form */
+form {
+    width: 500px;
+    margin: 24px 0 24px 0;
+    padding: 32px 40px;
+    background: #E9EAEB;
+    border: 1px solid #DFE1E6;
+
+}
+input, select {
+    vertical-align: middle;
+}
+form div {
+	border-bottom: 1px solid #D8DAE0;
+	padding: 12px 0 5px 0;	margin: 0;
+	color: #2C76A6;
+}
+form p {
+	color: #1980AF;
+}
+form label {
+    display: block;
+    font-family: 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Verdana, Sans-Serif;
+    font-weight: bold;
+    line-height: 24px;
+    font-size: 13px;
+    margin: 0 0 5px 0;
+    text-shadow: 1px 1px 0 rgba(255, 255, 255, 1);
+    color:#666666;
+}
+form label span {
+    color: #1980AF;
+}
+form input,
+form select,
+form textarea {
+    margin-bottom: 24px;
+	padding: 9px 10px;
+    color: #999;
+    background: #fff;
+	border-width: 1px;
+	border-style: solid;
+  	border-color: #DCDEE2 #E9EBED #E9EBED #DCDEE2;
+	font: 13px 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Verdana, Sans-serif;
+}
+form textarea {
+    height: 225px;
+}
+form input:focus,
+form select:focus,
+form textarea:focus {
+	background: #EEF5F9;
+    color: #666666;
+}
+form input.button {
+   	height: 36px;
+    font-family: 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Verdana, Sans-serif;
+   	margin-top: 10px;
+	margin-right: 3px;
+	padding: 6px 10px;
+	border: 1px solid #2177A5;
+	background-color: #227bad;
+    color: #fff;
+    cursor: pointer;
+
+    text-shadow: 0 -1px 0 rgba(0,0,0,0.5);
+
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+
+    box-shadow: 0px 1px 2px rgba(0,0,0,0.3), inset 0 1px 0 #3CA5D2;
+    -moz-box-shadow: 0px 1px 2px rgba(0,0,0,0.3), inset 0 1px 0 #3CA5D2;
+    -webkit-box-shadow: 0px 1px 2px rgba(0,0,0,0.3), inset 0 1px 0 #3CA5D2;
+}
+.ie7 form input.button {
+    padding: 0 2px;
+}
+#name, #email, #message, #website {
+	width: 475px;
+}
+
+/* Clearing and Alignment */
+.align-left {
+    float: left;
+}
+.align-right {
+    float: right;
+}
+.clearfix:after {
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: " ";
+    clear: both;
+    height: 0;
+}
+.ie7 .clearfix { zoom: 1; } /* IE7 */
+
+
+.primary {
+    width: 533px;
+    float: right;
+    padding-right: 25px;
+}
+
+.post-bottom-section {
+    position: relative;
+    margin: 10px 0 20px 0;
+    padding: 0 0 20px 0;
+    width: 726px;
+    overflow: hidden;
+}
+.post-bottom-section h2 {    
+  padding:5px 0;  font:1.1em/1.5 "arial", serif; text-align:center;
+}
+.post-bottom-section .primary form {
+	position: relative;
+	top: 15px; left: 0;
+	margin: 0 0 20px 0;
+    width: 447px;
+}
+
+.post-bottom-section .primary form #name,
+.post-bottom-section .primary form #email,
+.post-bottom-section .primary form #message,
+.post-bottom-section .primary form #website {
+	width: 425px;
+}
+
+/* Comments List */
+ol.commentlist {
+	margin: 12px 5px 12px 0;
+	padding: 0;
+    background: #FAFAFA;
+    border-top: 1px solid #E3E6E8;
+}
+.commentlist li {
+	list-style: none;
+	margin: 0;
+	padding: 12px 0 0 0;
+	border: 1px solid #E3E6E8;
+    border-width: 0 1px 1px 1px;
+	overflow: hidden;
+}
+.commentlist li a:link,
+.commentlist li a:visited {
+    color: #227bad;
+}
+.commentlist li a:hover {
+    color: #CC3300;
+}
+.commentlist li .comment-info {
+	width: 99%;
+	margin: 5px 0 0 0; padding: 0;
+	overflow: hidden;
+}
+.commentlist li .comment-info img {
+	float: right;
+	margin: 3px 20px 0 0;
+    padding: 10px;
+    background: #fff;
+	border:  1px  solid #DBDBDB;
+
+    box-shadow: none;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+}
+.commentlist li .comment-info cite {
+	display: block;
+	margin: 0; padding: 5px 65px 5px 25px;
+	font-style: normal;
+}
+.commentlist li .comment-info cite .comment-data {
+    font-size: .8em;
+   	font-weight: normal;
+}
+.commentlist li .comment-text {
+	clear: both;
+	margin: 10px 0 0 0; padding: 0 25px 25px 25px;
+}
+.commentlist li .comment-text p {
+	margin:  5px 0 20px 0;
+	padding: 0;
+}
+.commentlist li.thread-alt {
+	background: #F3F4F5;
+    border-color: #DDDFE3;
+}
+
+/* BBCode */
+textarea.code_container {
+    color: #0000FF;
+    height: 225px;
+	width: 472px;   
+  	border: 1px solid #E4E6E9;
+	background: #FFF;
+}

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<socials>
+
+<Google>https://plus.google.com/share?url={link}</Google>
+
+<Pinterest>http://pinterest.com/pin/create/button/?url={link}+media={media}+description={title}</Pinterest>
+
+<NetVouz>http://www.netvouz.com/action/submitBookmark?url={link}+title={title}</NetVouz>
+
+<Reddit>http://reddit.com/submit?url={link}+title={title}</Reddit>
+
+<Del.icio.us>http://del.icio.us/post?url={link}+title={title}</Del.icio.us>
+
+<LinkaGoGo>http://www.linkagogo.com/go/AddNoPopup?url={link}+title={title}</LinkaGoGo>
+
+<Newsvine>http://www.newsvine.com/_tools/seed+save?u={link}+h={title}</Newsvine>
+
+<Blogmarks>http://blogmarks.net/my/new.php?mini=1+simple=1+url={link}+title={title}</Blogmarks>
+
+<StumbleUpon>http://www.stumbleupon.com/submit?url={link}+title={title}</StumbleUpon>
+
+<Digg>http://digg.com/submit?phase=2+url={link}+title={title}</Digg>
+
+<FeedMeLinks>http://feedmelinks.com/categorize?from=toolbar+op=submit+url={link}+name={title}</FeedMeLinks>
+
+<Wists>http://wists.com/r.php?r={link}+title={title}</Wists>
+
+<Fark>http://cgi.fark.com/cgi/fark/submit.pl?new_url={link}</Fark>
+
+<Facebook>http://www.facebook.com/share.php?u={link}+t={title}</Facebook>
+
+<Twitter>http://twitter.com/home?status=Currently viewing {link}</Twitter>
+
+<MySpace>http://www.myspace.com/Modules/PostTo/Pages/?u={link}</MySpace>
+ 
+</socials>
