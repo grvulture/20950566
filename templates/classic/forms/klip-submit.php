@@ -49,7 +49,10 @@ defined('_BIRDY') or die(dirname(__FILE__).DS.__FILE__.': Restricted access');
 	echo '<div class="table-form">';
 	
 	if (!empty($klip_url)) {
+<<<<<<< HEAD
 		$klip_url = str_replace('http://youtu.be/','https://www.youtube.com/watch?v=',$klip_url);
+=======
+>>>>>>> f94387b9ebb03cc1531943c938bd46ad9775d58d
 		if (!strstr($klip_url,'://')) $klip_url = "http://".$klip_url;
 		if (parse_url($klip_url)) {//$birdy->url_exists($klip_url)) {
 		
