@@ -1,0 +1,31 @@
+.hide {
+	display:none;
+}
+
+div.profile-right {
+	padding-left: 10px;
+	text-align: justify;
+	width: 100%;
+}
+div.profile-left {
+	margin: 5px !important;
+	border-right: 0;
+	width: 98%;
+}
+div.klip-content {
+	/*height: 100px;*/
+	width:90% !important;
+}
+div.popup-wrapper {
+	width: 300px !important;
+}
+
+.klip-heading {
+	font-size: 14px !important;
+}
+.klip-description {
+	font-size: 12px !important;
+}
+.klip-input {
+	width: 275px !important;
+}

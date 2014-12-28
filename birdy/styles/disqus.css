@@ -1,0 +1,20 @@
+html, body, form {
+  width: 940px !important;
+  height: 114px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+  background: none !important;
+  overflow: hidden !important;
+}
+textarea {
+  background: #000 !important;
+  padding: 10px !important;
+  border: 1px solid #cccccc !important;
+  width: 918px !important;
+  height: 90px !important;
+  overflow: hidden !important;
+}
+textarea:focus {
+  border: 1px solid white !important;
+}
