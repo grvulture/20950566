@@ -18,7 +18,8 @@ if (!$user->isLoggedIn()) {
 	<div class="span1_of_3 profile-left">
 <?php
 if (!$user->isLoggedIn()) {
-	$klips = $db->loadObjectlist("SELECT * FROM klips WHERE privacy=:privacy ORDER BY id DESC",array(":privacy"=>0));
+	//$klips = $db->loadObjectlist("SELECT * FROM klips WHERE privacy=:privacy ORDER BY id DESC",array(":privacy"=>0));
+	// @TODO: fix privacy of klips!
 ?>
 			<p class="para top1" style="font-size:11px">In Kipsam you can klip everything you like while you surf. Images, videos, your favorite articles, or even your personal notes.</p>
 			<p class="para top" style="font-size:11px">You can also upload your own pictures, <!--MP3s and videos, -->and personalize them with titles and descriptions.</p>
@@ -53,27 +54,67 @@ if (!$user->isLoggedIn()) {
 		</div>
 		<?php 
 		$klips_sql = klips_sql();
+	// @TODO: fix privacy of klips!
 		$klips = $db->loadObjectlist("SELECT * FROM klips WHERE ".$klips_sql[0]." ORDER BY id DESC",$klips_sql[1]);
 		echo left_column('index',$klips); 
 		?>
 	</div>
-	<div class="span2_of_3 profile-right">
+	<div id="result" class="span2_of_3 profile-right">
 	<?php
+		$actual_row_count = 10;
 		if (isset($_REQUEST['remove_filter']) && $_REQUEST['remove_filter']=='klippers') unset($_SESSION['klipper_search']);
 		if (isset($_SESSION['klipper_search'])) {
 			echo "<h2 class='style' style='font-size:8px'><a>Search results: ".$_SESSION['klipper_search']['query']." (klippers)</a>
 				<a class='klip-submit klip-button remove-filter' style='float:none;display:block !important;' href='?remove_filter=klippers'>remove this search</a></h2>
 				</h2>";
-			foreach ($_SESSION['klipper_search'] as $klipper) {
+			$total = count($_SESSION['klipper_search']);
+			for ($i=0; $i<$actual_row_count; $i++) {
+				$klipper = $_SESSION['klipper_search'][$i];
 				include(BIRDY_TEMPLATE_BASE.DS.'page-parts'.DS.'klipper-block.php');
 				echo "<div class='clear'></div>";
 			}
 		} elseif ($klips) {
-			foreach ($klips as $klip) {
+			$total = count($klips);
+			for ($i=0; $i<$actual_row_count; $i++) {
+				$klip = $klips[$i];
 				include(BIRDY_TEMPLATE_BASE.DS.'page-parts'.DS.'klip-block.php');
 				echo "<div class='clear'></div>";
 			}
 		}
+		$birdy->addScriptToBottom('
+            var page = 1;
+
+
+            $(window).scroll(function () {
+                if($(window).scrollTop() + $(window).height() > $(document).height() - 200) {
+                    page++;
+                    var actual_count = "'.$actual_row_count.'";
+                    var total = "'.$total.'";
+                    var ajax_session = "'.json_encode($_SESSION).'";
+                    var data = {
+                        page_num: page,
+                        actual_count: actual_count,
+                        ajax_session: ajax_session
+                    };
+
+                    if((page-1)* actual_count > total){
+                        //we have reached the end of page
+                    }else{
+                        $.ajax({
+                            type: "POST",
+                            url: "'.BIRDY_URL.'/index.php",
+                            data:data,
+                            success: function(res) {
+                                $("#result").append(res);
+                            }
+                        });
+                    }
+
+                }
+
+
+            });
+		')
 	?>
 	</div>
 <div class="clear"></div>

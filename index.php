@@ -8,9 +8,16 @@ define( 'DS', DIRECTORY_SEPARATOR );
 include_once('birdy'.DS.'birdy_main.php');
 $birdy = new birdyCMS();
 //=================================================================================
-$page = $birdy->parseRoute();
-// REDIRECT TO THE CORRECT PAGE, WITH ITS ARGS PARSED
-if ($page) {
-	$birdy->redirect($page['file'].$page['args'].$page['anchor']);
+// PROCESS ANY AJAX REQUESTS. THIS TAKES FOR GRANTED THAT FILES WHICH PROCESS AJAX ARE IN BIRDY'S PLUGINS 'AJAX' FOLDER
+if (!empty($_POST['birdy_ajax'])) {
+	// @TODO: make sure this is a valid file! For now we will just take the $_POST as it is
+	include(BIRDY_BASE.DS.'plugins'.DS.'_ajax_responses'.DS.$_POST['birdy_ajax']);
+} else {
+	// PROCESS THE ACTUAL PAGE REQUESTED
+	$page = $birdy->parseRoute();
+	// REDIRECT TO THE CORRECT PAGE, WITH ITS ARGS PARSED
+	if ($page) {
+		$birdy->redirect($page['file'].$page['args'].$page['anchor']);
+	}
 }
 ?>
