@@ -1,0 +1,15 @@
+[26-Dec-2014 18:55:31 America/Detroit] PHP Notice:  Undefined variable: rememberme in /home/klipsam/public_html/20950566/birdy/classes/birdyLogin.php on line 154
+[26-Dec-2014 18:57:15 America/Detroit] PHP Notice:  Undefined offset: 0 in /home/klipsam/public_html/20950566/images/URLs/create_screenshots.php on line 22
+[26-Dec-2014 18:57:15 America/Detroit] PHP Warning:  DOMDocument::loadHTML() [<a href='domdocument.loadhtml'>domdocument.loadhtml</a>]: Empty string supplied as input in /home/klipsam/public_html/20950566/images/URLs/create_screenshots.php on line 32
+[26-Dec-2014 18:57:15 America/Detroit] PHP Warning:  DOMDocument::loadHTML() [<a href='domdocument.loadhtml'>domdocument.loadhtml</a>]: Empty string supplied as input in /home/klipsam/public_html/20950566/images/URLs/create_screenshots.php on line 52
+[26-Dec-2014 18:58:10 America/Detroit] PHP Notice:  Undefined offset: 0 in /home/klipsam/public_html/20950566/images/URLs/create_screenshots.php on line 22
+[26-Dec-2014 18:58:10 America/Detroit] PHP Warning:  DOMDocument::loadHTML() [<a href='domdocument.loadhtml'>domdocument.loadhtml</a>]: Empty string supplied as input in /home/klipsam/public_html/20950566/images/URLs/create_screenshots.php on line 32
+[26-Dec-2014 18:58:10 America/Detroit] PHP Warning:  DOMDocument::loadHTML() [<a href='domdocument.loadhtml'>domdocument.loadhtml</a>]: Empty string supplied as input in /home/klipsam/public_html/20950566/images/URLs/create_screenshots.php on line 52
+[26-Dec-2014 20:22:36 America/Detroit] PHP Notice:  Undefined offset: 0 in /home/klipsam/public_html/20950566/images/URLs/create_screenshots.php on line 22
+[26-Dec-2014 20:22:36 America/Detroit] PHP Warning:  DOMDocument::loadHTML() [<a href='domdocument.loadhtml'>domdocument.loadhtml</a>]: Empty string supplied as input in /home/klipsam/public_html/20950566/images/URLs/create_screenshots.php on line 32
+[26-Dec-2014 20:22:36 America/Detroit] PHP Warning:  DOMDocument::loadHTML() [<a href='domdocument.loadhtml'>domdocument.loadhtml</a>]: Empty string supplied as input in /home/klipsam/public_html/20950566/images/URLs/create_screenshots.php on line 52
+[26-Dec-2014 20:26:16 America/Detroit] PHP Fatal error:  Call to a member function lastInsertId() on a non-object in /home/klipsam/public_html/20950566/templates/classic/favorite.php on line 17
+[26-Dec-2014 20:38:02 America/Detroit] PHP Notice:  Undefined variable: rememberme in /home/klipsam/public_html/20950566/birdy/classes/birdyLogin.php on line 154
+[26-Dec-2014 20:38:51 America/Detroit] PHP Fatal error:  Call to a member function lastInsertId() on a non-object in /home/klipsam/public_html/20950566/templates/classic/favorite.php on line 17
+[26-Dec-2014 20:39:19 America/Detroit] PHP Notice:  Undefined variable: rememberme in /home/klipsam/public_html/20950566/birdy/classes/birdyLogin.php on line 154
+[26-Dec-2014 20:40:40 America/Detroit] PHP Fatal error:  Call to a member function lastInsertId() on a non-object in /home/klipsam/public_html/20950566/templates/classic/favorite.php on line 17
