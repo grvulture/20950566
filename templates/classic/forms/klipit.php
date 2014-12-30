@@ -71,6 +71,7 @@ elseif (!empty($_POST['klip-submit']) || isset($_REQUEST['klip']) || isset($_REQ
 		</p>
 		<input type="hidden" name="edit" value="0" />
 		</form>
+		<p><br /><br /><br /></p>
 <?php
 	$birdy->addScriptToBottom('
 	$(document).ready(function() {

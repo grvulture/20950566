@@ -28,6 +28,7 @@ if (!$user->isLoggedIn()) $user->id=0;
 			$tags = " tags: <span class='tags'>".implode(", ",$tag_array)."</span>";
 		}
 	}
+	if (!$birdy->url_exists($klip->thumbnail)) $klip->thumbnail = "http://www.klipsam.com/images/URLs/default.jpg";
 	//if (!$birdy->url_exists($klip->bignail)) $klip->bignail = $klip->thumbnail;
 	$klip_image_link = ($birdy->browser=='web') ? $klip->bignail : $klip_url;
 	//
@@ -40,7 +41,7 @@ if (!$user->isLoggedIn()) $user->id=0;
 	}
 	$content = '
 	<div class="klip-image" '.$klip_image_style.'>'
-	.$lightbox.'<img src="'.$klip->thumbnail.'" style="width:100%" class="klip-thumbnail" /></a>
+	.$lightbox.'<img data-original="'.$klip->thumbnail.'" style="width:100%" class="lazy klip-thumbnail" /></a>
 	</div>
 	<div style="float:right;width:66%">';
 	$content.= '

@@ -19,11 +19,10 @@ However, the possibilities are endless. For Klipsam to reach its full potential,
 		<div class="clear"></div>
 		<div class="ui divider">
 		</div>
-<p style="margin-bottom: 10px;">There are many things that need to get done, but currently no funds whatsoever. :( &nbsp;&nbsp;But that doesn't mean we can't get it done!</p>
+<!-- <p style="margin-bottom: 10px;">There are many things that need to get done, but currently no funds whatsoever. :( &nbsp;&nbsp;But that doesn't mean we can't get it done!</p>-->
 <p style="margin-bottom: 10px;">If you are even a little bit curious, and want to know more about Klipsam, and what I have in mind about it, I would be more than happy to answer all your questions!</p>
 <p style="margin-bottom: 10px;">If you are intrigued by the idea of participating in something fresh, and looking to revolutionize the social sharing experience, then Klipsam may be what you were waiting for! I can't wait to share my enthusiasm with you!</p>
-<p style="margin-bottom: 10px;">If you would like to see Klipsam evolve and you being a part of this evolution, I welcome ANY <a href="javascript:scrollToAnchor('donators');">donation</a>! $1 would be enough to power days of work and gratitude, knowing that my work is appreciated!</p>
-<p style="margin-bottom: 10px;">If you believe this could be a potential good investment for you, you sir, have great vision! It would be so awesome if you <a href="/contact">contacted me</a>!</p>
+<p style="margin-bottom: 10px;">If you would like to see Klipsam evolve and you being a part of this evolution, if you believe this could be a potential good investment for you, you have great vision! It would be so awesome if you <a href="/contact">contacted me</a>!</p>
 		<br />
 		<br />
 <h3 class="style">Ways to get involved</h3>
@@ -31,20 +30,18 @@ However, the possibilities are endless. For Klipsam to reach its full potential,
 		<div class="ui divider">
 		</div>
 <p style="margin-bottom: 10px;">I am looking for volunteers, donators, sponsors, investors, anyone actually who wants to contribute to the evolvement of Klipsam.</p>
-<p style="margin-bottom: 10px;">There are no requirements; there are positions for everyone! Be it a one-job assignment writing a help article, to a marketing manager running a full marketing campaign; all volunteers are welcome!</p>
-<p style="margin-bottom: 10px;">Help me evolve Klipsam, and whoever gets on the ride with me, will never be left behind!</p>
+<!-- <p style="margin-bottom: 10px;">There are no requirements; there are positions for everyone! Be it a one-job assignment writing a help article, to a marketing manager running a full marketing campaign; all volunteers are welcome!</p> -->
+<!-- <p style="margin-bottom: 10px;">Help me evolve Klipsam, and whoever gets on the ride with me, will never be left behind!</p> -->
 		<br />
 		<br />
 <h3 class="style">Sponsors, Advertisers, and Investors</h3>
 		<div class="clear"></div>
 		<div class="ui divider">
 		</div>
-<p style="margin-bottom: 10px;">If you want to sponsor any of the Klipsam operations, advertise on Klipsam, or invest in any way, your decision will be mostly and eternally appreciated!
-You are the ones who will help us build a real business out of the Klipsam model, and your contribution will be rewarded properly. 
-The whole 100% of shares is open for the taking, so don't hesitate to contact me for some serious talks!</p>
+<p style="margin-bottom: 10px;">If you want to sponsor any of the Klipsam operations, advertise on Klipsam, or invest in any way, don't hesitate to contact me for some serious talks!</p>
 		<br />
 		<br />
-<h3 id="donators" class="style">Donators</h3>
+<!-- <h3 id="donators" class="style">Donators</h3>
 		<div class="clear"></div>
 		<div class="ui divider">
 		</div>
@@ -60,7 +57,7 @@ All donators will be listed on a "Donators" page, once I get the first donation.
 </form>
 
 		<br />
-		<br />
+		<br /> -->
 <h3 class="style">Who am I?</h3>
 		<div class="clear"></div>
 		<div class="ui divider">
@@ -73,7 +70,7 @@ All donators will be listed on a "Donators" page, once I get the first donation.
 		<br />
 		<br />
 <p>&nbsp;</p>
-<p style="padding-left:175px;">Thank you with all my heart, even if it's only for reading the entire page! :)</p>
+<p style="padding-left:175px;">Thank you, even if it's only for reading the entire page! :)</p>
 <p style="padding-left:175px;">Chris Michaelides</p>
 		<br />
 		<br />

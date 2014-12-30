@@ -8,7 +8,7 @@ if (!$user->isLoggedIn()) {
 		<div class="content">
 		    <h2 class="style list">
 		    <img src="images/URLs/default.jpg" alt="Klip your Surf Jam" class="hide index-logo"/>	<!--paper-clip-attachment.jpg-->
-		    <a href="#">Klip your Surf Jam</a></h2>
+		    <a href="/login">Klip your Surf Jam</a></h2>
 		</div>
 	<div class="clear"></div>
 <?php
@@ -56,12 +56,16 @@ if (!$user->isLoggedIn()) {
 		$klips_sql = klips_sql();
 	// @TODO: fix privacy of klips!
 		$klips = $db->loadObjectlist("SELECT * FROM klips WHERE ".$klips_sql[0]." ORDER BY id DESC",$klips_sql[1]);
-		echo left_column('index',$klips); 
+		echo left_column('index',$klips);
 		?>
 	</div>
 	<div id="result" class="span2_of_3 profile-right">
 	<?php
-		$actual_row_count = 10;
+	//echo "SELECT * FROM klips WHERE ".$klips_sql[0]." ORDER BY id DESC<br />";
+	//print_r($klips_sql[1]);
+		$total = 0;
+		$birdy_users = $birdy_users>15 ? 15 : $birdy_users;
+		$actual_row_count = count($klips)<$birdy_users ? count($klips) : $birdy_users;
 		if (isset($_REQUEST['remove_filter']) && $_REQUEST['remove_filter']=='klippers') unset($_SESSION['klipper_search']);
 		if (isset($_SESSION['klipper_search'])) {
 			echo "<h2 class='style' style='font-size:8px'><a>Search results: ".$_SESSION['klipper_search']['query']." (klippers)</a>
@@ -86,26 +90,38 @@ if (!$user->isLoggedIn()) {
 
 
             $(window).scroll(function () {
-                if($(window).scrollTop() + $(window).height() > $(document).height() - 200) {
+                if($(window).scrollTop() + $(window).height() == $(document).height()) {
+                    $("html, body").css("cursor", "wait");
                     page++;
                     var actual_count = "'.$actual_row_count.'";
                     var total = "'.$total.'";
-                    var ajax_session = "'.json_encode($_SESSION).'";
+                    var ajax_session = \''.json_encode($_SESSION).'\';
+                    var klips_sql0 = \''.$klips_sql[0].'\';
+                    var klips_sql1 = \''.json_encode($klips_sql[1]).'\';
                     var data = {
                         page_num: page,
                         actual_count: actual_count,
-                        ajax_session: ajax_session
+                        ajax_session: ajax_session,
+                        klips_sql0: klips_sql0,
+                        klips_sql1: klips_sql1,
+                        birdy_ajax: "ajax_klip_blocks.php" //THIS IS NEEDED TO TRIGGER AJAX IN BIRDY AND TO KNOW WHICH PAGE TO LOAD IN /plugins/_ajax_responses/
                     };
 
-                    if((page-1)* actual_count > total){
-                        //we have reached the end of page
+                    if((page-1)* actual_count > total || total==actual_count){
+                        $("html, body").css("cursor", "auto");
                     }else{
                         $.ajax({
                             type: "POST",
                             url: "'.BIRDY_URL.'/index.php",
                             data:data,
                             success: function(res) {
+		                    	$("html, body").css("cursor", "auto");
                                 $("#result").append(res);
+								$("img.lazy").lazyload({
+								    //effect : "fadeIn",
+								    threshold : 200,
+								    skip_invisible : false
+								});
                             }
                         });
                     }

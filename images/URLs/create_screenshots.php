@@ -19,7 +19,7 @@ include_once(BIRDY_BASE.DS.'birdy'.DS.'helpers'.DS.'simpleimage.php');
 		preg_match_all($pattern, $content, $matches);
 		if($matches)
 		{
-			$title = $matches[1][0];
+			if (isset($matches[1][0])) $title = $matches[1][0];
 		}
 			
 		return $title;

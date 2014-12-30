@@ -38,6 +38,8 @@ if (!$user->isLoggedIn()) $user->id=0;
 	} else $comment_info = "Comment on this";
 	//
 	$lightbox = ($birdy->browser=='web') ? 'rel="lightbox"' : '';
+	$klip->bignail = str_replace('URLsdefault.jpg', 'URLs/default.jpg', $klip->bignail);
+	//if (!$birdy->url_exists($klip->thumbnail)) $klip->thumbnail = "http://www.klipsam.com/images/URLs/default.jpg";
 	//if (!$birdy->url_exists($klip->bignail)) $klip->bignail = $klip->thumbnail;
 	$klip_image_link = ($birdy->browser=='web') ? $klip->bignail : $klip_url;
 	//
@@ -71,7 +73,7 @@ if (!$user->isLoggedIn()) $user->id=0;
 	}
 	$content = '
 	<div class="klip-image" '.$klip_image_style.'>'
-	.$lightbox.'<img src="'.$klip->thumbnail.'" class="klip-thumbnail" /></a>
+	.$lightbox.'<img data-original="'.$klip->thumbnail.'" class="lazy klip-thumbnail" /></a>
 	</div>
 	<div style="float:right;width:66%">';
 	if ($birdy->browser=='web') {
@@ -117,7 +119,7 @@ if (!$user->isLoggedIn()) $user->id=0;
 		$file = end($file);
 		$descr = '<a rel="lightbox" style="color:#333" href="'.$src.'">'.str_replace($file,'thumb-'.$file,$descr).'</a>';
 	}
-	$content.='<p class="klip-description">'.$descr.'</p>';
+	$content.='<p class="klip-description">'.str_replace('<img src=','<img class="lazy" data-original=',$descr).'</p>';
 	$content.='<div class="info tags">'.$parent_tag.$tags.'</div>';
 	$content.='</div>';
 	
@@ -135,13 +137,13 @@ if (!$user->isLoggedIn()) $user->id=0;
 	<p class="info">
 	<?php
 		if ($klip->privacy==0)
-		$privacy= '<img id="privacy0" title="Public Klip" src="'.BIRDY_URL.'images/icons/public.png" style="width:12px;position: relative; top:4px; padding:2px;" />';
+		$privacy= '<img id="privacy0" title="Public Klip" class="lazy" data-original="'.BIRDY_URL.'images/icons/public.png" style="width:12px;position: relative; top:4px; padding:2px;" />';
 		if ($klip->privacy==1)
-		$privacy= '<img id="privacy1" title="Followers and Friends" src="'.BIRDY_URL.'images/icons/friends.png" style="width:12px;position: relative; top:4px; padding:2px;" />';
+		$privacy= '<img id="privacy1" title="Followers and Friends" class="lazy" data-original="'.BIRDY_URL.'images/icons/friends.png" style="width:12px;position: relative; top:4px; padding:2px;" />';
 		if ($klip->privacy==2)
-		$privacy= '<img id="privacy2" title="Only Friends" src="'.BIRDY_URL.'images/icons/onlyfriends.png" style="width:12px;position: relative; top:4px; padding:2px;" />';
+		$privacy= '<img id="privacy2" title="Only Friends" class="lazy" data-original="'.BIRDY_URL.'images/icons/onlyfriends.png" style="width:12px;position: relative; top:4px; padding:2px;" />';
 		if ($klip->privacy==3)
-		$privacy= '<img id="privacy3" title="Only Me" src="'.BIRDY_URL.'images/icons/lock.png" style="width:12px;position: relative; top:4px; padding:2px;" />';
+		$privacy= '<img id="privacy3" title="Only Me" class="lazy" data-original="'.BIRDY_URL.'images/icons/lock.png" style="width:12px;position: relative; top:4px; padding:2px;" />';
 	//if (!strstr(BIRDY_SEF_URI,'profile') && !strstr(BIRDY_SEF_URI,'klipper')) {
 		echo "<span style='font-size:12px;'>".$privacy." by <a href='".BIRDY_URL."klipper/".$klip_user->username."'>".stripslashes($klip_user->used_name)."</a>";
 		/*if ($birdy->browser=='web')*/ echo " on <a href='?date=".strtotime($klip->creation_date)."'>".date("F d, Y",strtotime($klip->creation_date))."</a>";

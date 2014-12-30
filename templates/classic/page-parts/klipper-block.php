@@ -26,7 +26,7 @@ if (isset($klipper->id) && $klipper->id!=$user->id) {
 
 	$content = '
 	<div class="klip-image" '.$klip_image_style.'>'.
-	'<a href="'.$klip_url.'"><img src="'.$image.'" style="width:100%" class="klip-thumbnail" /></a>
+	'<a href="'.$klip_url.'"><img data-original="'.$image.'" style="width:100%" class="lazy klip-thumbnail" /></a>
 	</div>
 	
 	<div style="float:right;width:66%">';

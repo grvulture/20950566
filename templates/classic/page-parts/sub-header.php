@@ -1,14 +1,37 @@
+                <?php
+                //first get the count of users
+                $birdy_users = $db->count("birdy_users");
+                //then check the first x klips where x=count of users, or max. 1000 klips with tags
+                $birdy_users = ($birdy_users<1000) ? $birdy_users : 1000;
+                $trending_tags = $db->loadAssoclist("SELECT tags FROM klips WHERE tags<>'' LIMIT ".$birdy_users);
+                foreach ($trending_tags as $value) {
+                    $trendings = explode(",",$value['tags']);
+                    foreach ($trendings as $trend) {
+                        $trending[] = $trend;
+                    }
+                }
+                $trending = array_count_values($trending);
+                arsort($trending,1);
+                ?>
 <div class="header_sub_bg">
 <div class="wrap">
 <div class="wrapper">
 		<div class="hdr-nav trending hide">
 			<ul class="sub_nav">
                 <li class="info hide"><a disabled="disabled">Trending:</a></li>
+                <?php
+                foreach($trending as $x => $x_value) {
+                    $x_value = $db->loadResult("SELECT id FROM tags WHERE tag=:tag",array(":tag"=>$x));
+                    echo '<li class="hide"><a href="/?tag='.$x_value.'">'.$x.'</a></li>';
+                }
+                ?>
+                <!--
                 <li class="hide"><a href="#">Responsive design</a></li>
                 <li class="hide"><a href="#">Best islands in the world</a></li>
                 <li class="hide"><a href="#">Image manipulation</a></li>
                 <li class="active hide"><a href="#">New Technologies</a></li>
                 <li class="hide"><a href="#">Web design and technology</a></li>
+                -->
 				</ul>
 		</div>
 		<div class="hdr-nav" style="float:right">
@@ -29,3 +52,4 @@
 </div>
 </div>
 <div class="clear"></div>
+<?php //echo "<pre>";print_r($_SESSION);echo "</pre>"; ?>

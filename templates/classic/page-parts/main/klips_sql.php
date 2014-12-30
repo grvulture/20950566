@@ -1,11 +1,11 @@
 <?php
 defined('_BIRDY') or die(dirname(__FILE__).DS.__FILE__.': Restricted access');
 //============================================================================
+//echo "<pre>";print_r($_REQUEST);echo "</pre>";
 //@TODO: REMEMBER: ONE REPORT REMOVES THE KLIP! KLIPPERS WITH REPORTED CONTENT SHOULD BE FORBIDDEN TO POST MORE KLIPS
 // REPORTERS WITH FALSE REPORTS SHOULD BE FORBIDDEN TO SUBMIT NEW REPORTS
 function klips_sql($klipper=false) {
 	$db = birdyDB::getInstance();
-	//echo "<pre>";print_r($_REQUEST);echo "</pre>";
 
 	$klipper_field = empty($klipper) ? '' : " AND user_id=:user_id ";
 	$klipper_value = empty($klipper) ? array() : array(":user_id"=>$klipper->id);
@@ -86,9 +86,9 @@ function klips_sql($klipper=false) {
 	$search_value = isset($_SESSION['search_value']) ? $_SESSION['search_value'] : array();
 //============================================================================
 	
-	$remove_filter = (isset($_REQUEST['remove_filter'])) ? $_REQUEST['remove_filter'] : '';
-	
-	if (!empty($_SESSION['date_query'])) {
+	$remove_filter = (isset($_REQUEST['remove_filter'])) ? $_REQUEST['remove_filter'] : "";
+	if (empty($_SESSION['date_query'])) $remove_filter='date';
+	//if (!empty($_SESSION['date_query'])) {
 		if ($remove_filter=='date') {
 			$date_field = '';
 			$date_value = array();
@@ -102,9 +102,11 @@ function klips_sql($klipper=false) {
 				</div>
 				";
 		}
-	}
+	//}
 	
-	if (!empty($_SESSION['type_query'])) {
+	$remove_filter = (isset($_REQUEST['remove_filter'])) ? $_REQUEST['remove_filter'] : $remove_filter;
+	if (empty($_SESSION['type_query'])) $remove_filter='type';
+	//if (!empty($_SESSION['type_query'])) {
 		if ($remove_filter=='type') {
 			$type_field = '';
 			$type_value = array();
@@ -118,9 +120,11 @@ function klips_sql($klipper=false) {
 				</div>
 				";
 		}
-	}
+	//}
 	
-	if (!empty($_SESSION['parent_tag_query'])) {
+	$remove_filter = (isset($_REQUEST['remove_filter'])) ? $_REQUEST['remove_filter'] : $remove_filter;
+	if (empty($_SESSION['parent_tag_query'])) $remove_filter='parent_tag';
+	//if (!empty($_SESSION['parent_tag_query'])) {
 		if ($remove_filter=='parent_tag') {
 			$parent_tag_field = '';
 			$parent_tag_value = array();
@@ -134,9 +138,11 @@ function klips_sql($klipper=false) {
 				</div>
 				";
 		}
-	}
+	//}
 	
-	if (!empty($_SESSION['tag_query'])) {
+	$remove_filter = (isset($_REQUEST['remove_filter'])) ? $_REQUEST['remove_filter'] : $remove_filter;
+	if (empty($_SESSION['tag_query'])) $remove_filter='tag';
+	//if (!empty($_SESSION['tag_query'])) {
 		if ($remove_filter=='tag') {
 			$tag_field = '';
 			$tag_value = array();
@@ -150,9 +156,11 @@ function klips_sql($klipper=false) {
 				</div>
 				";
 		}
-	}
+	//}
 	
-	if (!empty($_SESSION['search_query'])) {
+	$remove_filter = (isset($_REQUEST['remove_filter'])) ? $_REQUEST['remove_filter'] : $remove_filter;
+	if (empty($_SESSION['search_query'])) $remove_filter='search';
+	//if (!empty($_SESSION['search_query'])) {
 		if ($remove_filter=='search') {
 			$search_field = '';
 			$search_value = array();
@@ -166,7 +174,7 @@ function klips_sql($klipper=false) {
 				</div>
 				";
 		}
-	}
+	//}
 	
 	$fields = "reports<:reports AND message=0".$klipper_field.$date_field.$type_field.$parent_tag_field.$tag_field.$search_field;
 	$values = array_merge(

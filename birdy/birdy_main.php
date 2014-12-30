@@ -76,6 +76,7 @@ Class birdyCMS {
 		}
 		// add jQuery here. Conflicting js could be loaded before or after
 		$this->addScriptFile(BIRDY_URL.'birdy/js/jquery.js');
+		$this->addScriptFile(BIRDY_URL.'birdy/js/jquery.lazyload.min.js');
 		if (birdyConfig::$user_access) {
 			// The Composer auto-loader (official way to load Composer contents) to load external stuff automatically
 			//if (file_exists('vendor/autoload.php')) {
@@ -175,7 +176,7 @@ Class birdyCMS {
 		* Too many redirections was adding more metadata to the head than it should.
 		* What should happen is that only the LAST redirection should write its metadata to the header.
 		* This static variable fixes that...
-		* It's one of those situations where the programmer is happy it works, but doesn't exaclty know how and why it works! :)
+		* It's one of those situations where the programmer is happy it works, but doesn't exactly know how and why it works! :)
 		*/
 		static $times = 0;
 		// add 1 use...

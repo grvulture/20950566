@@ -84,6 +84,11 @@ Class birdyDB extends PDO {
 		$query->execute($array);
 		return $query->fetchColumn();
 	}
+
+	public function count($table) {
+		$nRows = $this->query('select count(*) from '.$table)->fetchColumn(); 
+		return $nRows;
+	}
 	
 	public function delete($table,$array=array()) { // 'articles', array('title'=>$title, 'content'=>$content)
 		foreach ($array as $field=>$value) {

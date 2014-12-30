@@ -47,8 +47,7 @@ defined('_BIRDY') or die(dirname(__FILE__).DS.__FILE__.': Restricted access');
                                 <?php
                             }
 $birdy->addScriptToBottom("
-$(document).ready(function() {
-	$('#comment_show".$klip->id."').click(function(){
+$(document).on('click', '#comment_show".$klip->id."', function(){ 
 		style = document.getElementById('comments".$klip->id."').style.display;
 		if (style=='none') {
 			$('#comments".$klip->id."').slideDown('slow');
@@ -60,6 +59,5 @@ $(document).ready(function() {
 			//document.getElementById('comments".$klip->id."').style.display = 'none';
 		}
 		return false;
-	});
 });
 ");

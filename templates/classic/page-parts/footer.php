@@ -30,4 +30,9 @@ $("a[href='#top']").click(function() {
   $("html, body").animate({ scrollTop: 0 }, "slow");
   return false;
 });
+$("img.lazy").lazyload({
+    //effect : "fadeIn",
+    threshold : 200,
+    skip_invisible : false
+});
 </script>
