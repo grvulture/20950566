@@ -5,12 +5,12 @@ $birdy = birdyCMS::getInstance();
 $db = birdyDB::getInstance();
 $user = birdyUser::getInstance();
 //============================================================================
+include "page-parts".DS."doctype.php";
 $birdy->pageTitle("Edit your Profile! | Klipsam");
 $birdy->pageDescription("Klip your thoughts. Klip your jam. Klipsam!");
 $birdy->pageImage(BIRDY_URL.'images/logo.jpg');
-if (!$user->isLoggedIn()) {
-	$birdy->loadPage(BIRDY_URL.'login');
-}
+//============================================================================
+// Process editing if submitted
 if (isset($_POST['editProfile'])) {
 	$success = 0;
 	$success += (birdyUser::editUserName()) ? 1 : 0;
@@ -27,7 +27,8 @@ if (isset($_POST['editProfile'])) {
 	}
 	$birdy->loadPage(BIRDY_URL."profile");
 }
-include "page-parts".DS."doctype.php";
+//============================================================================
+// Initial page
 ?>
 <body>
 <?php

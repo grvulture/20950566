@@ -94,7 +94,12 @@ Class birdyRouter {
 				$router = new birdyRouteHelper();
 			}
 			// parse the uri
-			return array('file'=>$file.".php", 'args'=>$router->parseRoute($args), 'anchor'=>$anchor);
+			$args = $router->parseRoute($args);
+			if (strstr($_SERVER['REQUEST_URI'],"?")) {
+				$args1 = explode("?",$_SERVER['REQUEST_URI']);
+				$args = (empty($args)) ? "?".$args1[1] : $args."&".$args1[1];
+			}
+			return array('file'=>$file.".php", 'args'=>$args, 'anchor'=>$anchor);
 		// End of Rerouting
 	}
 

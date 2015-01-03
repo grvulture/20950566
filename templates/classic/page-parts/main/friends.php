@@ -15,12 +15,6 @@ $friends2= $db->loadObjectlist("SELECT requested AS id FROM friends WHERE reques
 $friends = array_merge_recursive($friends,$friends2);
 unset($friends2);
 
-if (!$user->isLoggedIn()) {
-	$birdy->outputAlert("You don't have access to this page. Please login");
-	$birdy->loadPage("/login");
-	return;
-}
-
 if ($birdy->browser=='web') {
 	userLeftColumn($user,$klipper);
 }

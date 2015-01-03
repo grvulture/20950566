@@ -78,7 +78,7 @@ $birdy->pageImage(BIRDY_URL.'images/logo.jpg');
 		<div class="clear"></div>
 		<div class="ui divider">
 		</div>
-<p>We may revise this Privacy Policy from time to time.  The most  current version of the policy will govern our use of your information  and will always be at <a href="/privacy">https://www.Klipsam.com/privacy</a>.  If we make a change to this policy that, in our sole discretion, is  material, we will notify you via an @Klipsam update or email to the  email address associated with your account. By continuing to access or  use the Services after those changes become effective, you agree to be  bound by the revised Privacy Policy.</p>	<br />
+<p>We may revise this Privacy Policy from time to time.  The most  current version of the policy will govern our use of your information  and will always be at <a href="/privacy">Klipsam.com/privacy</a>.  If we make a change to this policy that, in our sole discretion, is  material, we will notify you via an @Klipsam update or email to the  email address associated with your account. By continuing to access or  use the Services after those changes become effective, you agree to be  bound by the revised Privacy Policy.</p>	<br />
 		<br />
 		<br />
 

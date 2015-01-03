@@ -1,9 +1,13 @@
-                <?php
-                //first get the count of users
-                $birdy_users = $db->count("birdy_users");
+<?php
+defined('_BIRDY') or die(dirname(__FILE__).DS.__FILE__.': Restricted access');
+//============================================================================
+if ($birdy->current_page!='login') {
+
+               //first get the count of users
+                $birdy->total_users = $db->count("birdy_users");
                 //then check the first x klips where x=count of users, or max. 1000 klips with tags
-                $birdy_users = ($birdy_users<1000) ? $birdy_users : 1000;
-                $trending_tags = $db->loadAssoclist("SELECT tags FROM klips WHERE tags<>'' LIMIT ".$birdy_users);
+                $birdy->total_users = ($birdy->total_users<1000) ? $birdy->total_users : 1000;
+                $trending_tags = $db->loadAssoclist("SELECT tags FROM klips WHERE tags<>'' ORDER BY creation_date DESC LIMIT ".$birdy->total_users);
                 foreach ($trending_tags as $value) {
                     $trendings = explode(",",$value['tags']);
                     foreach ($trendings as $trend) {
@@ -52,4 +56,8 @@
 </div>
 </div>
 <div class="clear"></div>
-<?php //echo "<pre>";print_r($_SESSION);echo "</pre>"; ?>
+<?php 
+//echo "<pre>";print_r($_SESSION);echo "</pre>"; 
+
+}
+?>

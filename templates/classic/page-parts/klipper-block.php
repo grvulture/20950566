@@ -34,7 +34,7 @@ if (isset($klipper->id) && $klipper->id!=$user->id) {
 		$addfriend = str_replace('add1-actions"','klip-actions-links" style="padding-right:20px"',$addfriend);
 		$follow    = str_replace('add1-actions"','klip-actions-links" style="padding-right:20px"',$follow);
 		$message   = str_replace('add1-actions"','klip-actions-links" style="padding-right:20px"',$message);
-		$actions_wrapper_width = 'width:232px;';
+		$actions_wrapper_width = 'width:243px;';
 		$content.= '<div id="actions-'.$klipper->id.'" class="klip-actions-wrapper" style="display:none;'.$actions_wrapper_width.'"><div class="klip-actions">';
 		$content.= $addfriend.$follow.$message;
 		$content.= '</div></div>';

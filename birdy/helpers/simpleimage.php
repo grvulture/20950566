@@ -51,42 +51,44 @@ class SimpleImage {
 
 
   function getimagesize_remote($image_url,$check_if_exists=true) {
-  if ($check_if_exists) $check_if_exists = $this->image_exist($image_url);
-  else $check_if_exists = true;
-  
-	if ($check_if_exists) {
-      $gis = array();
-      $ext = pathinfo($image_url,PATHINFO_EXTENSION);
-      switch ($ext) {
-		case 'gif':
-		case 'GIF':
-			if ($im = imagecreatefromgif($image_url))
-			$gis[2] = IMAGETYPE_GIF;
-			break;
-		case 'png':
-		case 'PNG':
-			if ($im = imagecreatefrompng($image_url))
-			$gis[2] = IMAGETYPE_PNG;
-			break;
-		case 'jpg':
-		case 'jpeg':
-		case 'JPG':
-		case 'JPEG':
-		default:
-			if ($im = imagecreatefromjpeg($image_url))
-			$gis[2] = IMAGETYPE_JPEG;
-			break;
-	  }
+    if ($check_if_exists) $check_if_exists = $this->image_exist($image_url);
+    else $check_if_exists = true;
+    
+  	if ($check_if_exists) {
+        $gis = array();
+        $ext = pathinfo($image_url,PATHINFO_EXTENSION);
+        switch ($ext) {
+  		case 'gif':
+  		case 'GIF':
+  			if ($im = imagecreatefromgif($image_url))
+          $gis[2] = IMAGETYPE_GIF;
+  			break;
+  		case 'png':
+  		case 'PNG':
+  			if ($im = imagecreatefrompng($image_url))
+          $gis[2] = IMAGETYPE_PNG;
+  			break;
+  		case 'jpg':
+  		case 'jpeg':
+  		case 'JPG':
+  		case 'JPEG':
+  			if ($im = imagecreatefromjpeg($image_url))
+          $gis[2] = IMAGETYPE_JPEG;
+  			break;
+      default:
+        if ($im = imagecreatefromstring(file_get_contents($image_url)))
+          $gis[2] = exif_imagetype($image_url);
+  	  }
       if (empty($gis[2])) { return false; }
       $gis[0] = ImageSX($im);
       $gis[1] = ImageSY($im);
-	  // array member 3 is used below to keep with current getimagesize standards
+  	  // array member 3 is used below to keep with current getimagesize standards
       $gis[3] = "width={$gis[0]} height={$gis[1]}";
       ImageDestroy($im);
       return $gis;
-     }
+    }
      
-     return false;
+    return false;
   }
   
   /**

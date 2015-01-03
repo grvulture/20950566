@@ -6,7 +6,7 @@ $db = birdyDB::getInstance();
 $user = birdyUser::getInstance();
 //============================================================================
 include "page-parts".DS."doctype.php";
-$birdy->pageTitle("Klipsam | Klip your Surf Jam");
+$birdy->pageTitle("Contact Us | Klipsam");
 $birdy->pageDescription("Klip everything you find while you surf. Klip your thoughts. Klip your jam!");
 $birdy->pageImage(BIRDY_URL.'images/logo.jpg');
 ?>

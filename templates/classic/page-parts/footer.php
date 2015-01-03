@@ -1,4 +1,12 @@
+<?php
+defined('_BIRDY') or die(dirname(__FILE__).DS.__FILE__.': Restricted access');
+//============================================================================
+if ($birdy->current_page!='login') {
+?>
 <div class="footer-float hide">
+<?php
+}
+?>
 <div class="wrap">
 	<div class="footer">
 		<div class="foot_nav">
@@ -24,7 +32,13 @@
 		<div class="clear"></div>
 	</div>
 </div>
+<?php
+if ($birdy->current_page!='login') {
+?>
 </div>
+<?php
+}
+?>
 <script type="text/javascript">
 $("a[href='#top']").click(function() {
   $("html, body").animate({ scrollTop: 0 }, "slow");

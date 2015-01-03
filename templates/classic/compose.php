@@ -5,15 +5,14 @@ $birdy = birdyCMS::getInstance();
 $db = birdyDB::getInstance();
 $user = birdyUser::getInstance();
 //============================================================================
+include "page-parts".DS."doctype.php";
 $birdy->pageTitle("Write a new message | Klipsam");
 $birdy->pageDescription("Klip your thoughts. Klip your jam. Klipsam!");
 $birdy->pageImage(BIRDY_URL.'images/logo.jpg');
-if (!$user->isLoggedIn()) {
-	$birdy->loadPage(BIRDY_URL.'login');
-}
+//============================================================================
 // save the first referrer page where the klipit function was called from. When [DONE], we will redirect back there.
 if (!isset($_POST['message-done'])) $_SESSION['loadPage'] = $_SERVER['HTTP_REFERER'];
-include "page-parts".DS."doctype.php";
+//============================================================================
 ?>
 <body>
 <?php

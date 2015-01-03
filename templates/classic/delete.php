@@ -9,11 +9,11 @@ include "page-parts".DS."doctype.php";
 $birdy->pageTitle("Delete! | Klipsam");
 $birdy->pageDescription("Klip your thoughts. Klip your jam. Klipsam!");
 $birdy->pageImage(BIRDY_URL.'images/logo.jpg');
-if (!$user->isLoggedIn()) {
-	$birdy->loadPage(BIRDY_URL.'login');
-}
+//============================================================================
+// Keep the page where we came from to redirect upon deletion
 if (!isset($_POST['delete-klip'])) $_SESSION['loadPage'] = $_SERVER['HTTP_REFERER'];
 //============================================================================
+// Confirmed deletion? Proceed here
 $klip = isset($_REQUEST['delete-klip']) ? $_REQUEST['delete-klip'] : 0;
 if ($klip) {
 	$query = $db->delete("klips",array("id"=>$klip));
@@ -24,7 +24,12 @@ if ($klip) {
 		$birdy->loadPage($loadPage);
 	}
 }
+//============================================================================
+// Initial page
 $klip = isset($_REQUEST['klip']) ? $_REQUEST['klip'] : 0;
+?>
+<body>
+<?php
 if ($klip) {
 ?>
 <div class="main" style="text-align:center;padding-left:10%;width:270px;">

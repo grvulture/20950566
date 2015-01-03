@@ -32,6 +32,10 @@ elseif (isset($_REQUEST['friend'])) {
 	if (empty($already)) {
 		$result = $db->insert('friends',array("requester"=>$user->id, "requested"=>$requested, "accepted"=>0));
 		if ($result) $echo = "Friend request sent to ".$klipper->used_name;
+		//add also as a follower
+		$already = $db->loadResult("SELECT id FROM following WHERE user_id=:user AND following=:requested",
+		array(":user"=>$user->id, ":requested"=>$requested));
+		if (empty($already)) $result = $db->insert('following',array("user_id"=>$user->id, "following"=>$requested));
 	}
 	else {
 		$result = $db->delete('friends',array("id"=>$already));

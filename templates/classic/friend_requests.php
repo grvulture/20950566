@@ -9,6 +9,7 @@ include "page-parts".DS."doctype.php";
 $birdy->pageTitle("Friend Requests | Klip your Surf Jam");
 $birdy->pageDescription("Klip everything you find while you surf. Klip your thoughts. Klip your jam!");
 $birdy->pageImage(BIRDY_URL.'images/logo.jpg');
+//============================================================================
 ?>
 <body>
 <!-- start header -->

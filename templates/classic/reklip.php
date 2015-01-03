@@ -9,11 +9,11 @@ include "page-parts".DS."doctype.php";
 $birdy->pageTitle("Reklip | Klipsam");
 $birdy->pageDescription("Klip your thoughts. Klip your jam. Klipsam!");
 $birdy->pageImage(BIRDY_URL.'images/logo.jpg');
-if (!$user->isLoggedIn()) {
-	$birdy->loadPage(BIRDY_URL.'login');
-}
+//============================================================================
+// save the first referrer page where the klipit function was called from. When [DONE], we will redirect back there.
 if (!isset($_POST['reklip'])) $_SESSION['loadPage'] = $_SERVER['HTTP_REFERER'];
 //============================================================================
+// done rekliping?
 $klip = isset($_REQUEST['reklip']) ? $_REQUEST['reklip'] : 0;
 if ($klip) {
 	include_once(BIRDY_TEMPLATE_BASE.DS.'forms'.DS.'klipit.php');
@@ -23,6 +23,8 @@ if ($klip) {
 		$birdy->loadPage($loadPage);
 	}
 }
+//============================================================================
+// Initial page
 $klip = isset($_REQUEST['klip']) ? $_REQUEST['klip'] : 0;
 if ($klip) {
 	$klipDB = $db->loadAssoc("SELECT * FROM klips WHERE id=:reklip",array(":reklip"=>$klip));

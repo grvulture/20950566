@@ -6,6 +6,8 @@ $db = birdyDB::getInstance();
 $user = birdyUser::getInstance();
 //============================================================================
 include "page-parts".DS."doctype.php";
+// page title and description will be generated on next step...
+//============================================================================
 ?>
 <body>
 <!-- start header -->

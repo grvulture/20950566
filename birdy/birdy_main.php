@@ -69,6 +69,13 @@ Class birdyCMS {
 		$this->detectBrowser();
         birdySession::init();
 		//=============================================================================
+		// Now sanitize inputs!
+		$_SESSION = filter_var_array($_SESSION,FILTER_SANITIZE_STRING);
+		$_SERVER = filter_var_array($_SERVER,FILTER_SANITIZE_STRING);
+		$_REQUEST = filter_var_array($_REQUEST,FILTER_SANITIZE_STRING);
+		$_POST = filter_var_array($_POST,FILTER_SANITIZE_STRING);
+		$_GET = filter_var_array($_GET,FILTER_SANITIZE_STRING);
+		//=============================================================================
 		if (birdyConfig::$use_lightbox) {
 			$this->addScriptFile(BIRDY_URL.'birdy/js/right.js');
 			$this->addScriptFile(BIRDY_URL.'birdy/js/right-lightbox.js');
@@ -505,16 +512,42 @@ Class birdyCMS {
 				return array('response'=>$content, 'errors'=>$er, 'command'=>$cmd);
 	}
 	
+	/**
+	 * Create a directory if it doesn't exist
+	 */
 	public function createDir($dir) {
 		if (!file_exists($dir)) {
 			mkdir($dir, 0755, true);
 		}
 	}
 	
+	/**
+	 * Function to save the session before loading the new page
+	 */
 	public function loadPage($page = false) {
 		if (!$page) $page = $_SERVER['HTTP_REFERER'];
 		session_write_close();
 		header('Location:'.$page);
 	}
+
+	/**
+	 * Recursive String Replace - recursive_array_replace(mixed, mixed, array);
+	 */
+	function recur_replace($find, $replace, $array){
+		if (!is_array($array)) {
+			if (!is_object($array)) 
+				return str_replace($find, $replace, $array);
+			else
+				return $array;
+		}
+
+		$newArray = array();
+		foreach ($array as $key => $value) {
+			$newArray[$key] = $this->recur_replace($find, $replace, $value);
+		}
+		
+		return $newArray;
+	}
+
 	
 }

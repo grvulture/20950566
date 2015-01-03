@@ -5,11 +5,9 @@ $birdy= birdyCMS::getInstance();
 $db = birdyDB::getInstance();
 $user = birdyUser::getInstance();
 //============================================================================
-if (!$user->isLoggedIn()) {
-	$birdy->outputAlert("You do not have access to this page. Please login");
-	$birdy->loadPage(BIRDY_URL.'login');
-}
 include "page-parts".DS."doctype.php";
+// page title and description will be generated on next step...
+//============================================================================
 ?>
 <body>
 <!-- start header -->

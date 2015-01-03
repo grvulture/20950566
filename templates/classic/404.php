@@ -2,7 +2,12 @@
 defined('_BIRDY') or die(dirname(__FILE__).DS.__FILE__.': Restricted access');
 //============================================================================
 $birdy= birdyCMS::getInstance();
+//============================================================================
 include "page-parts".DS."doctype.php";
+$birdy->pageTitle("404 | Klipsam");
+$birdy->pageDescription("Klip Missing! What we actually want to say is 404 error :/");
+$birdy->pageImage(BIRDY_URL.'images/logo.jpg');
+//============================================================================
 ?>
 <div class="header_bg">
 <div class="wrap">

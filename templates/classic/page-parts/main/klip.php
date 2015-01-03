@@ -2,16 +2,20 @@
 defined('_BIRDY') or die(dirname(__FILE__).DS.__FILE__.': Restricted access');
 //============================================================================
 $klip = $db->loadObject("SELECT * FROM klips WHERE id=:id",array(":id"=>$_REQUEST['klip_id']));
-if (empty($klip) || ($klip->reports > _MAX_REPORTS && $user->account_type < 2)) {
+if (empty($klip) || ($klip->reports >= _MAX_REPORTS && ($user->account_type < 2 || !$user->isLoggedIn()))) {
+	$birdy->outputWarning("klip->reports:".$klip->reports." _MAX_REPORTS:"._MAX_REPORTS." user->account_type:".$user->account_type.' user->isLoggedIn:'.$user->isLoggedIn);
+	$birdy->outputWarning("Klip not found, or you don't have enough privileges to access it!");
 	if (!($_SERVER['HTTP_REFERER']=='http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'])) {
-		$birdy->outputWarning("Klip not found!");
 		$birdy->loadPage('/');
 	} else {
 		$birdy->loadPage('/profile');
 	}
 }
-if ($klip->reports > _MAX_REPORTS && $user->account_type > 1) {
-	$birdy->outputWarning($klip->reports.' reports have been submitted about this Klip! It is now offline and waits moderation');
+if ($klip->reports >= _MAX_REPORTS && ($user->account_type > 1 || $user->id==$klip->user_id)) {
+	$birdy->outputWarning("This klip has been reported: ".$klip->reports.' time(s)! It is now offline and waits moderation');
+}
+if ($user->account_type>1) {
+	
 }
 
 	$klip_user = birdyUser::getInstance($klip->user_id);
@@ -190,7 +194,7 @@ $birdy->pageImage($klip->thumbnail);
 		</h5>
 		<div style="margin-top:10px;width:100%;">
 		<div style="<?php echo $klip_relative; ?>">
-		<?php if ($klip->type!="klip-note" && $klip->type!="klip-photo") echo rawurldecode(str_replace("http://www.klipsam.com/loadinFrame.php?url=","",$klip_frame)); ?>
+		<?php //if ($klip->type!="klip-note" && $klip->type!="klip-photo") echo rawurldecode(str_replace("http://www.klipsam.com/loadinFrame.php?url=","",$klip_frame)); ?>
 		</div>
 		</div>
 		<div class="clear"></div>

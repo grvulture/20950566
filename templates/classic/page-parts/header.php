@@ -48,7 +48,7 @@ defined('_BIRDY') or die(dirname(__FILE__).DS.__FILE__.': Restricted access');
 					
 				} else {
 					$active = (strstr(BIRDY_SEF_URI,'login')) ? 'class="active"' : '';
-					if ($birdy->browser=='web') echo '<li '.$active.'><a rel="lightbox" href="/login?popup=1">login/sign up</a></li>';
+					if ($birdy->browser=='web' && $birdy->current_page!='login') echo '<li '.$active.'><a rel="lightbox" href="/login?popup=1">login/sign up</a></li>';
 					else echo '<li '.$active.'><a href="/login">login/sign up</a></li>'; 
 				}
 				?>

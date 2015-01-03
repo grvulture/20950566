@@ -26,7 +26,7 @@ function userProfilePage($user,$klipper=false) {
 	$klips = userLeftColumn($user,$klipper);
 	
 	?>
-	<div class="span2_of_3 profile-right">
+	<div id="result" class="span2_of_3 profile-right">
 	<?php
 	//if (!empty($_POST['birdyCommentSession'])) birdyComments::submitComment(); // this is already done on "displayComments"
 	if ($user->id==$klipper->id && (!empty($_POST['klip-submit']) || (!empty($_POST['klip-done'])&&empty($_REQUEST['done-klipping'])))) {
@@ -34,9 +34,14 @@ function userProfilePage($user,$klipper=false) {
 	}
 	if (empty($_POST['klip-submit'])) {
 		if ($klips) {
-			foreach ($klips as $klip) {
-				include(BIRDY_TEMPLATE_BASE.DS.'page-parts'.DS.'klip-block.php');
-				echo "<div class='clear'></div>";
+			$total = count($klips);
+			$actual_row_count = $total<$birdy->total_users ? $total : $birdy->total_users;
+			for ($i=0; $i<$actual_row_count; $i++) {
+				if (isset($klips[$i])) {
+					$klip = $klips[$i];
+					include(BIRDY_TEMPLATE_BASE.DS.'page-parts'.DS.'klip-block.php');
+					echo "<div class='clear'></div>";
+				}
 			}
 			//include(BIRDY_TEMPLATE_BASE.DS.'forms'.DS.'klipit.php');
 		} elseif ($user->id==$klipper->id) {
@@ -95,18 +100,25 @@ function userLeftColumn($user,$klipper) {
 
 	$follow = $db->loadResult("SELECT id FROM following WHERE user_id=:user AND following=:requested",array(":user"=>$user->id, ":requested"=>$klipper->id));
 	$follow = empty($follow) ? 'Follow' : 'Un-follow';
+
+	$block = $db->loadResult("SELECT id FROM blocks WHERE blocker=:user AND blocked=:requested",array(":user"=>$user->id, ":requested"=>$klipper->id));
+	$block = empty($block) ? 'Block this Klipper' : 'Un-block';
 	?>
 	<div class="span3">
 	<div class="span1_of_3 profile-left">
+
 		<?php if ($user->id==$klipper->id) { ?>
-			<a rel="lightbox" title="Change your Profile Picture" href="<?php echo BIRDY_URL; ?>uploadAvatar">
+			<a <?php echo $lightbox; ?> title="Change your Profile Picture" href="<?php echo BIRDY_URL; ?>uploadAvatar">
+				<img src="<?php echo $klipper->avatar; ?>" style="border:2px solid #DDDDDD;border-radius:150px" alt="<?php echo $user_credentials; ?>">
+			</a>
 			<h2 class="style top1" style="word-wrap: break-word;"><a <?php echo $lightbox; ?> title="Update your profile info" href="<?php echo BIRDY_URL; ?>editProfile<?php echo $popup; ?>"><?php echo $user_credentials; ?></a></h2>
-		<?php } ?>
+
+		<?php } else { ?>
+
 			<img src="<?php echo $klipper->avatar; ?>" style="border:2px solid #DDDDDD;border-radius:150px" alt="<?php echo $user_credentials; ?>">
 			<h2 class="style top1" style="word-wrap: break-word;"><a><?php echo $user_credentials; ?></a></h2>
-		<?php if ($user->id==$klipper->id) { ?>
-			</a>
 		<?php } ?>
+
 		<h5 class="style"><?php echo $user_heading; ?></h5>
 		<p class="para info" style="font-size:11px;padding:10px;<?php echo $aboutmestyle; ?>"><?php echo $user_about; ?></p>
 		<div class="ui divider" style="margin:10px 0">
@@ -156,7 +168,7 @@ function userLeftColumn($user,$klipper) {
 		<button class="klip-submit klip-button" style="font-size:12px;background:#EFEFEF;">Add/Remove from lists...</button>
 		<button class="klip-submit klip-button" style="font-size:12px;background:#EFEFEF;">Klip on this Klipper</button>
 		-->
-		<a rel="lightbox" href="/block/klipper/<?php echo $klipper->id; ?>" id="block<?php echo $klipper->id; ?>" class="klip-submit klip-button" onclick="changeBlock(<?php echo $klipper->id; ?>)" style="font-size:12px;background:#EFEFEF;">Block this Klipper</button>
+		<a rel="lightbox" href="/block/klipper/<?php echo $klipper->id; ?>" id="block<?php echo $klipper->id; ?>" onclick="changeBlock(<?php echo $klipper->id.',\''.$block.'\''; ?>)" class="klip-submit klip-button" style="font-size:12px;background:#EFEFEF;"><?php echo $block; ?></button>
 		<a rel="lightbox" href="/report/type/klipper/id/<?php echo $klipper->id; ?>" class="klip-submit klip-button" style="font-size:12px;background:#EFEFEF;">Report this Klipper</a>
 		<?php } else { ?>
 		<button onclick="window.location='/friend_requests'" class="klip-submit klip-button" style="font-size:12px;background:#EFEFEF;"><?php echo $db->loadResult("SELECT count(id) FROM friends WHERE requested=:user_id AND accepted=0",array(":user_id"=>$user->id)); ?> friend requests</button>
@@ -167,46 +179,54 @@ function userLeftColumn($user,$klipper) {
 		<div class="ui divider" style="margin:10px 0">
 		</div>
 		<?php 
-		$klips_sql = klips_sql($klipper);
-		$klips = $db->loadObjectlist("SELECT * FROM klips WHERE ".$klips_sql[0]." ORDER BY id DESC",$klips_sql[1]);
-		echo left_column('profile',$klips); 
+		$klips = left_column('profile',$klipper); 
 		?>
 	</div>
 	<?php
 	return $klips;
 }
 
-function left_column($page,$klips) {
+function left_column($page,$klipper=false) {
 	$birdy = birdyCMS::getInstance();
 	$db = birdyDB::getInstance();
 	$user = birdyUser::getInstance();
-	$total_klips = count($klips);
 	$type = array();
-	foreach ($klips as $klip) {
-		$type[$klip->type][] = 1;
-	}
-	ksort($type);
-	$parent_tags = array();
-	foreach ($klips as $klip) {
-		if ($klip->parent_tag>0) {
-			$parent = $db->loadResult("SELECT tag FROM tags WHERE id=:id",array(":id"=>$klip->parent_tag));
-			if (!empty($parent)) $parent_tags[$parent][] = $klip->parent_tag;
+	$klips_sql = klips_sql($klipper);
+	//$klips = $db->loadObjectlist("SELECT * FROM klips WHERE privacy=:privacy ORDER BY id DESC",array(":privacy"=>0));
+	// @TODO: fix privacy of klips!
+	$klips = $db->loadObjectlist("SELECT * FROM klips WHERE ".$klips_sql[0]." ORDER BY id DESC",$klips_sql[1]);
+	$total_klips = count($klips);
+
+	if (isset($_SESSION['klipper_search'])) {
+		echo "<h2 class='style' style='font-size:8px'><a>Search results: <small style='font-size:small'>(klippers)</small><br />".$_SESSION['klipper_search']['query']."</a>
+			<a class='klip-submit klip-button remove-filter' style='float:none;display:block !important;' href='?remove_filter=klippers'>remove this search</a></h2>
+			</h2>";
+	} else {
+		foreach ($klips as $klip) {
+			$type[$klip->type][] = 1;
 		}
-	}
-	ksort($parent_tags);
-	$tags = array();
-	foreach ($klips as $klip) {
-		if ($klip->tags!='') {
-			if (strstr($klip->tags,",")) $klip_tags = explode(",",$klip->tags);
-			else $klip_tags = array($klip->tags);
-			foreach($klip_tags as $tag) {
-				$tag_id = $db->loadResult("SELECT id FROM tags WHERE tag=:tag",array(":tag"=>ucfirst($tag)));
-				if (!empty($tag_id)) $tags[$tag][] = $tag_id;
+		ksort($type);
+		$parent_tags = array();
+		foreach ($klips as $klip) {
+			if ($klip->parent_tag>0) {
+				$parent = $db->loadResult("SELECT tag FROM tags WHERE id=:id",array(":id"=>$klip->parent_tag));
+				if (!empty($parent)) $parent_tags[$parent][] = $klip->parent_tag;
 			}
 		}
-	}
-	ksort($tags);
-	?>
+		ksort($parent_tags);
+		$tags = array();
+		foreach ($klips as $klip) {
+			if ($klip->tags!='') {
+				if (strstr($klip->tags,",")) $klip_tags = explode(",",$klip->tags);
+				else $klip_tags = array($klip->tags);
+				foreach($klip_tags as $tag) {
+					$tag_id = $db->loadResult("SELECT id FROM tags WHERE tag=:tag",array(":tag"=>ucfirst($tag)));
+					if (!empty($tag_id)) $tags[$tag][] = $tag_id;
+				}
+			}
+		}
+		ksort($tags);
+		?>
 		<div style="text-align:center;">
 		<button class="klip-submit"><?php echo $total_klips; ?> <?php echo $total_klips>1 ? "total" : ""; ?> klip<?php echo $total_klips>1 ? "s" : ""; ?></button>
 		<?php
@@ -249,4 +269,66 @@ function left_column($page,$klips) {
 		<p>&nbsp;</p>
 		<p>&nbsp;</p>
 	<?php
+	}
+		if (isset($_SESSION['klipper_search']) && $page!='profile') {
+			$total = count($_SESSION['klipper_search']);
+			$actual_row_count = $total<$birdy->total_users ? $total : $birdy->total_users;
+		} elseif ($klips) {
+			$total = count($klips);
+			$actual_row_count = $total<$birdy->total_users ? $total : $birdy->total_users;
+			//echo "TOTAL: $total <br /> ACTUAL_ROW_COUNT: $actual_row_count <br /> BIRDY USERS: ".$birdy->total_users." <br /> ";
+		}
+
+		//make sure SESSION has escaped doube quotes
+		$SESSION = $birdy->recur_replace('"','dipla-eisag',$_SESSION);
+
+		$birdy->addScriptToBottom('
+            var page = 1;
+
+
+            $(window).scroll(function () {
+                if($(window).scrollTop() + $(window).height() == $(document).height()) {
+                    $("html, body").css("cursor", "wait");
+                    page++;
+                    var php_page = "'.$page.'";
+                    var actual_count = "'.$actual_row_count.'";
+                    var total = "'.$total.'";
+                    var ajax_session = \''.json_encode($SESSION).'\';
+                    var klips_sql0 = \''.$klips_sql[0].'\';
+                    var klips_sql1 = \''.json_encode($klips_sql[1]).'\';
+                    var data = {
+                    	php_page: php_page,
+                        page_num: page,
+                        actual_count: actual_count,
+                        ajax_session: ajax_session,
+                        klips_sql0: klips_sql0,
+                        klips_sql1: klips_sql1,
+                        birdy_ajax: "ajax_klip_blocks.php" //THIS IS NEEDED TO TRIGGER AJAX IN BIRDY AND TO KNOW WHICH PAGE TO LOAD IN /plugins/_ajax_responses/
+                    };
+
+                    if((page-1)* actual_count > total || total==actual_count){
+                        $("html, body").css("cursor", "auto");
+                    }else{
+                        $.ajax({
+                            type: "POST",
+                            url: "'.BIRDY_URL.'/index.php",
+                            data:data,
+                            success: function(res) {
+		                    	$("html, body").css("cursor", "auto");
+                                $("#result").append(res);
+								$("img.lazy").lazyload({
+								    //effect : "fadeIn",
+								    threshold : 200,
+								    skip_invisible : false
+								});
+                            }
+                        });
+                    }
+
+                }
+
+
+            });
+		');
+	return $klips;
 }

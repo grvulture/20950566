@@ -5,10 +5,6 @@ $birdy = birdyCMS::getInstance();
 $db = birdyDB::getInstance();
 $user = birdyUser::getInstance();
 //============================================================================
-if (!$user->isLoggedIn()) {
-	return;
-}
-//============================================================================
 $klip = isset($_REQUEST['klip']) ? $_REQUEST['klip'] : 0;
 if ($klip) {
 	$exists= $db->loadResult("SELECT id FROM favorites WHERE user_id=:user_id AND klip_id=:klip_id",array("user_id"=>$user->id,"klip_id"=>$klip));

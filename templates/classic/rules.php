@@ -40,8 +40,8 @@ $birdy->pageImage(BIRDY_URL.'images/logo.jpg');
 <li> <strong><a>Private information</a></strong>:  You may not publish or post other people's private and confidential  information, such as credit card numbers, street address or Social  Security/National Identity numbers, without their express authorization  and permission.</li>
 <li> <strong><a>Violence and Threats</a></strong>: You may not publish or post direct, specific threats of violence against others.</li>
 <li> <strong><a>Copyright</a></strong>:  We will respond to clear and complete notices of alleged copyright  infringement. Our copyright procedures are set forth in the Terms of  Service.</li>
-<li> <strong>Unlawful Use</strong>: You may not use our service for any  unlawful purposes or in furtherance of illegal activities. International  users agree to comply with all local laws regarding online conduct and  acceptable content.</li>
-<li> <strong>Misuse of Klipsam Badges</strong>: You may not use badges, such  as but not limited to the Promoted or Verified Klipsam badge, unless  provided by Klipsam. Accounts using these badges as part of profile  photos, header photos, background images, or in a way that falsely  implies affiliation with Klipsam may be suspended.</li>
+<li> <strong><a>Unlawful Use</a></strong>: You may not use our service for any  unlawful purposes or in furtherance of illegal activities. International  users agree to comply with all local laws regarding online conduct and  acceptable content.</li>
+<li> <strong><a>Misuse of Klipsam Badges</a></strong>: You may not use badges, such  as but not limited to the Promoted or Verified Klipsam badge, unless  provided by Klipsam. Accounts using these badges as part of profile  photos, header photos, background images, or in a way that falsely  implies affiliation with Klipsam may be suspended.</li>
 </ul>
 	<br />
 	<br />
@@ -51,7 +51,7 @@ $birdy->pageImage(BIRDY_URL.'images/logo.jpg');
 		</div>
 <p style="margin-bottom: 10px;">Klipsam strives to protect its users from abuse and spam. User abuse  and technical abuse are not tolerated on Klipsam.com, and may result in  permanent suspension. Any accounts engaging in the activities specified  below may be subject to permanent suspension.</p>
 <ul>
-<li> <strong>Serial Accounts</strong>: You may not create multiple accounts  for disruptive or abusive purposes, or with overlapping use cases. Mass  account creation may result in suspension of all related accounts.  Please note that any violation of the Klipsam Rules is cause for  permanent suspension of all accounts.</li>
+<li> <strong><a>Serial Accounts</a></strong>: You may not create multiple accounts  for disruptive or abusive purposes, or with overlapping use cases. Mass  account creation may result in suspension of all related accounts.  Please note that any violation of the Klipsam Rules is cause for  permanent suspension of all accounts.</li>
 <li> <strong><a>Targeted Abuse</a></strong>:  You may not engage in targeted abuse or harassment. Some of the factors  that we take into account when determining what conduct is considered  to be targeted abuse or harassment are:      
 <ul>
 <li>if you are sending messages to a user from multiple accounts;</li>
@@ -67,10 +67,10 @@ $birdy->pageImage(BIRDY_URL.'images/logo.jpg');
 <li>using feeds of third-party content to update and maintain accounts under the names of those third parties</li>
 </ul>
 </li>
-<li> <strong>Invitation spam</strong>: You may not use Klipsam.com's address book contact import to send repeat, mass invitations.</li>
-<li> <strong>Selling usernames</strong>: You may not buy or sell Klipsam usernames.&nbsp;</li>
-<li> <strong>Malware/Phishing</strong>: You may not publish or link to  malicious content intended to damage or disrupt another user&rsquo;s browser  or computer or to compromise a user&rsquo;s privacy.&nbsp;</li>
-<li> <strong>Spam</strong>: You may not use the Klipsam service for the  purpose of spamming anyone. What constitutes &ldquo;spamming&rdquo; will evolve as  we respond to new tricks and tactics by spammers. Some of the factors  that we take into account when determining what conduct is considered to  be spamming are:         
+<li> <strong><a>Invitation spam</a></strong>: You may not use Klipsam.com's address book contact import to send repeat, mass invitations.</li>
+<li> <strong><a>Selling usernames</a></strong>: You may not buy or sell Klipsam usernames.&nbsp;</li>
+<li> <strong><a>Malware/Phishing</a></strong>: You may not publish or link to  malicious content intended to damage or disrupt another user&rsquo;s browser  or computer or to compromise a user&rsquo;s privacy.&nbsp;</li>
+<li> <strong><a>Spam</a></strong>: You may not use the Klipsam service for the  purpose of spamming anyone. What constitutes &ldquo;spamming&rdquo; will evolve as  we respond to new tricks and tactics by spammers. Some of the factors  that we take into account when determining what conduct is considered to  be spamming are:         
 <ul>
 <li>If you have followed and/or unfollowed large amounts of users in a  short time period, particularly by automated means (aggressive following  or follower churn);</li>
 <li>If you repeatedly follow and unfollow people, whether to build followers or to garner more attention for your profile;</li>
@@ -92,7 +92,7 @@ $birdy->pageImage(BIRDY_URL.'images/logo.jpg');
 <li>Using or promoting third-party sites that claim to get you more  followers (such as follower trains, sites promising "more followers  fast," or any other site that offers to automatically add followers to  your account);</li>
 </ul>
 </li>
-<li> <strong>Pornography</strong>: You may not use obscene or pornographic images in either your profile photo, header photo, or user background.</li>
+<li> <strong><a>Pornography</a></strong>: You may not use obscene or pornographic images in either your profile photo, header photo, or user background.</li>
 </ul>
 <p style="margin-bottom: 10px;">Your account may be suspended for Terms of Service violations if any of the above is true. Accounts created to replace suspended  accounts will be permanently suspended.</p>
 <p style="margin-bottom: 10px;">Accounts engaging in any of these behaviors may be investigated for  abuse. Accounts under investigation may be removed from Search for  quality. Klipsam reserves the right to immediately terminate your  account without further notice in the event that, in its judgment, you  violate these Rules or the <a href="/terms">Terms of Service</a>.</p>

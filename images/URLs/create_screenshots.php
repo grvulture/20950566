@@ -257,7 +257,7 @@ if (!empty($parse_url)) {
 		} else {
 			$thumbnail_file = $original_file;
 			if (!strstr($original,BIRDY_URL)) {
-				$original = "http://www.klipsam.com/loadinFrame.php?url=".rawurlencode($original);
+				$original = BIRDY_URL."loadinFrame.php?url=".base64_encode(rawurlencode($original));
 			}
 		}
 		//if (!empty($ogimage)) $thumbnail_file = $ogimage;

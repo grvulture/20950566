@@ -5,10 +5,13 @@ $birdy= birdyCMS::getInstance();
 $db = birdyDB::getInstance();
 $user = birdyUser::getInstance();
 //============================================================================
+if ($user->isLoggedIn()) $birdy->loadPage(BIRDY_URL."profile");
+//============================================================================
 include "page-parts".DS."doctype.php";
-$birdy->pageTitle("Klipsam | Login");
+$birdy->pageTitle("Login | Klipsam");
 $birdy->pageDescription("Login to Klipsam. Klip your thoughts. Klip your jam!");
 $birdy->pageImage(BIRDY_URL.'images/logo.jpg');
+//============================================================================
 ?>
 <body>
 <?php

@@ -5,11 +5,11 @@ $birdy= birdyCMS::getInstance();
 $db = birdyDB::getInstance();
 $user = birdyUser::getInstance();
 //============================================================================
-if (!$user->isLoggedIn()) {
-	$birdy->outputAlert("You do not have access to this page. Please login");
-	$birdy->loadPage(BIRDY_URL.'login');
-}
 include "page-parts".DS."doctype.php";
+$birdy->pageTitle("Inbox | Klip your Surf Jam");
+$birdy->pageDescription("Klip everything you find while you surf. Klip your thoughts. Klip your jam!");
+$birdy->pageImage(BIRDY_URL.'images/logo.jpg');
+//============================================================================
 ?>
 <body>
 <!-- start header -->
