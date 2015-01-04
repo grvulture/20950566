@@ -134,10 +134,18 @@ body {
 	margin-top: 1%;
 }
 h2.style a{
-	font-family: 'nexa_boldregular';
+/*color: #fff;*/
+font-size: 2em;
+font-weight: 700;
+line-height: 40px;
+margin: 0 0 11px;
+max-height: 120px;
+overflow: hidden;
+word-wrap: break-word;
+font-family: 'nexa_boldregular';
 	display:block;
 	text-align: center;
-	font-size: 3.2em;
+/*	font-size: 3.2em;*/
 	color: #111111;
 	text-transform: capitalize;
 	letter-spacing: -1px;

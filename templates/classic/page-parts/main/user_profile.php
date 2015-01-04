@@ -3,6 +3,69 @@ defined('_BIRDY') or die(dirname(__FILE__).DS.__FILE__.': Restricted access');
 //============================================================================
 include_once("klips_sql.php");
 
+//echo "<pre>";print_r($klipper);echo "</pre>";
+//============================================================================
+//HERE IS A GOOD PLACE TO SHOW MODERATOR MESSAGES
+$suspendbutton = "Suspend Klipper for now";
+$banbutton = "Ban Klipper forever";
+$confirmbutton = "Unconfirm registration of Klipper";
+$warn = 'reward';
+$reportbutton = '';
+// if we are not on our own profile...
+if ($birdy->current_page=="klipper") {
+	// first make sure we do not allow views from others if suspended/banned/unconfirmed...
+	if ($klipper->account_type < 1 || $klipper->suspended==1) {
+		//suspended?
+		if ($klipper->suspended== 1) {
+			$birdy->outputWarning("This Klipper has been suspended until further notice.");
+			$suspendbutton = "Unsuspend Klipper";
+			$warn = 'warn';
+		}
+		//banned?
+		if ($klipper->account_type == -1) {
+			$birdy->outputWarning("This Klipper has been banned!");
+			$banbutton = "Unban Klipper";
+			$warn = false;
+		//unconfirmed?
+		} elseif ($klipper->account_type==0) {
+			$birdy->outputWarning("This Klipper is unconfirmed and is not allowed to interact with other klippers.");
+			$confirmbutton = "Confirm registration of Klipper";
+			$warn = 'warn';
+		}
+		//redirect non-moderators
+		if ($user->account_type < 2) {
+			if (!($_SERVER['HTTP_REFERER']=='http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'])) {
+				$birdy->loadPage('/');
+			} else {
+				$birdy->loadPage('/profile');
+			}
+		}
+	}
+	// now the moderators...
+	if ($user->account_type>1) {
+		if ($klipper->reports >= _MAX_REPORTS) {
+			$birdy->outputWarning("This Klipper has been reported: ".$klipper->reports.' time(s)! Please take action');
+			$reportbutton = '<button style="font-size:17px;" onclick="window.location=\'/showreports/report_id/'.$klipper->id.'\'" class="klip-submit klip-button">Show reports</button>';
+			$warn = 'warn';
+		}
+		?>
+		<h2>
+			<p style="background:#E9E9E9; text-align: center;">
+			<button style="font-size:17px;" onclick="window.location='/suspend/klipper/<?php echo $klipper->id; ?>'" class="klip-submit klip-button"><?php echo $suspendbutton; ?></button>
+			<button style="font-size:17px;" onclick="window.location='/ban/klipper/<?php echo $klipper->id; ?>'" class="klip-submit klip-button"><?php echo $banbutton; ?></button>
+			<button style="font-size:17px;" onclick="window.location='/confirm/klipper/<?php echo $klipper->id; ?>'" class="klip-submit klip-button"><?php echo $confirmbutton; ?></button>
+			<?php
+			if ($warn) echo '<button style="font-size:17px;" onclick="window.location=\'/'.$warn.'/klipper/'.$klipper->id.'\'" class="klip-submit klip-button">'.ucfirst($warn).' Klipper</button>';
+			echo $reportbutton;
+			?>
+			</p>
+			<p style="background:#E9E9E9; padding-top: 5px;"></p>
+		</h2>
+		<p><br /></p>
+		<?php
+	}
+}
+
 /**
 * function to show the user profile page
 * user: the current logged in user

@@ -23,7 +23,7 @@
 
 <FeedMeLinks>http://feedmelinks.com/categorize?from=toolbar+op=submit+url={link}+name={title}</FeedMeLinks>
 
-<Wists>http://wists.com/r.php?r={link}+title={title}</Wists>
+<Tumblr>https://www.tumblr.com/share/link?url={link}</Tumblr>
 
 <Fark>http://cgi.fark.com/cgi/fark/submit.pl?new_url={link}</Fark>
 
@@ -31,6 +31,6 @@
 
 <Twitter>http://twitter.com/home?status=Currently viewing {link}</Twitter>
 
-<MySpace>http://www.myspace.com/Modules/PostTo/Pages/?u={link}</MySpace>
+<LinkedIn>http://www.linkedin.com/shareArticle?mini=true+url={link}+title={title}+summary={description}+source=Klipsam</LinkedIn>
  
 </socials>

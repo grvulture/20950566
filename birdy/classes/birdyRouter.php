@@ -82,7 +82,10 @@ Class birdyRouter {
 			$file = str_replace(".php","",$args[1]);
 			$birdy= birdyCMS::getInstance();
 			$birdy->current_page = $file;
-			if (!file_exists(BIRDY_TEMPLATE_BASE.DS.$file.".php")) $file = '404';
+			if (!file_exists(BIRDY_TEMPLATE_BASE.DS.$file.".php"))
+				if (file_exists(BIRDY_TEMPLATE_BASE.DS.'actions'.DS.$file.".php"))
+					$file = 'actions'.DS.$file;
+						else $file = '404';
 			
 			if (file_exists(BIRDY_TEMPLATE_BASE.DS.'routers'.DS.$file.'.php')) {
 				include_once(BIRDY_TEMPLATE_BASE.DS.'routers'.DS.$file.'.php');

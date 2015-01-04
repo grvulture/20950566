@@ -67,14 +67,16 @@ Class birdyCMS {
 		birdyConfig::setDEFINES();
 		//=============================================================================
 		$this->detectBrowser();
-        birdySession::init();
+		birdySession::init();
 		//=============================================================================
 		// Now sanitize inputs!
-		$_SESSION = filter_var_array($_SESSION,FILTER_SANITIZE_STRING);
-		$_SERVER = filter_var_array($_SERVER,FILTER_SANITIZE_STRING);
-		$_REQUEST = filter_var_array($_REQUEST,FILTER_SANITIZE_STRING);
-		$_POST = filter_var_array($_POST,FILTER_SANITIZE_STRING);
-		$_GET = filter_var_array($_GET,FILTER_SANITIZE_STRING);
+		// this does not work, as various functionality doesn't work (infinite scrolling, login, etc.)
+		// I will have to sanitize each one individually
+		//$_SESSION = filter_var_array($_SESSION,FILTER_SANITIZE_STRING);
+		//$_SERVER = filter_var_array($_SERVER,FILTER_SANITIZE_STRING);
+		//$_REQUEST = filter_var_array($_REQUEST,FILTER_SANITIZE_STRING);
+		//$_POST = filter_var_array($_POST,FILTER_SANITIZE_STRING);
+		//$_GET = filter_var_array($_GET,FILTER_SANITIZE_STRING);
 		//=============================================================================
 		if (birdyConfig::$use_lightbox) {
 			$this->addScriptFile(BIRDY_URL.'birdy/js/right.js');
@@ -191,7 +193,8 @@ Class birdyCMS {
 		
 		if (!defined('BIRDY_PARSED_URI')) DEFINE('BIRDY_PARSED_URI', $uri);
 		$uri = parse_url(BIRDY_URL.$uri);
-		$file= str_replace("/","",$uri['path']);
+		// replace only if not an action...
+		$file= (!strstr($uri['path'],'/actions/')) ? str_replace("/","",$uri['path']) : $file = $uri['path'];
 		$query = (isset($uri['query'])) ? explode("&",$uri['query']) : array();
 		foreach ($query as $queryPart) {
 			$part = explode("=",$queryPart);

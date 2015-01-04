@@ -3,7 +3,7 @@ defined('_BIRDY') or die(dirname(__FILE__).DS.__FILE__.': Restricted access');
 //============================================================================
 $klip = $db->loadObject("SELECT * FROM klips WHERE id=:id",array(":id"=>$_REQUEST['klip_id']));
 if (empty($klip) || ($klip->reports >= _MAX_REPORTS && ($user->account_type < 2 || !$user->isLoggedIn()))) {
-	$birdy->outputWarning("klip->reports:".$klip->reports." _MAX_REPORTS:"._MAX_REPORTS." user->account_type:".$user->account_type.' user->isLoggedIn:'.$user->isLoggedIn);
+	//$birdy->outputWarning("klip->reports:".$klip->reports." _MAX_REPORTS:"._MAX_REPORTS." user->account_type:".$user->account_type.' user->isLoggedIn:'.$user->isLoggedIn);
 	$birdy->outputWarning("Klip not found, or you don't have enough privileges to access it!");
 	if (!($_SERVER['HTTP_REFERER']=='http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'])) {
 		$birdy->loadPage('/');
@@ -12,7 +12,7 @@ if (empty($klip) || ($klip->reports >= _MAX_REPORTS && ($user->account_type < 2 
 	}
 }
 if ($klip->reports >= _MAX_REPORTS && ($user->account_type > 1 || $user->id==$klip->user_id)) {
-	$birdy->outputWarning("This klip has been reported: ".$klip->reports.' time(s)! It is now offline and waits moderation');
+	$birdy->outputWarning("This klip has been reported: ".$klip->reports.' time(s)! It is now offline and waits moderation.');
 }
 if ($user->account_type>1) {
 	
@@ -98,9 +98,9 @@ $birdy->pageImage($klip->thumbnail);
 			$reklip = $db->loadObject("SELECT title,user_id FROM klips WHERE id=:reklip",array(":reklip"=>$klip->reklip));
 			if (isset($reklip->user_id)) $reklipper = birdyUser::getInstance($reklip->user_id);
 			if (isset($reklip->title)) $reklip_url = '/klip/'.$klip->reklip.'/'.str_replace(array("/"," "),"_",stripslashes($reklip->title));
-			if (isset($reklipper)) $reklip_info ='
-			<a href="'.$reklip_url.'" style="font-size:11px;color:#0066FF;">original klip by '.$reklipper->used_name.'</a>
-			'; else $reklip_info = '';
+			if (isset($reklipper)) $reklip_info ='	( 
+			<a title="Go to original klip..." href="'.$reklip_url.'" style="font-size:11px;color:#3289C8;">original klip by '.$reklipper->used_name.'</a>
+			)'; else $reklip_info = '';
 		} else {
 			$reklip_info = '';
 		}
@@ -178,7 +178,7 @@ $birdy->pageImage($klip->thumbnail);
 		<h2 class="style top1" style="word-wrap: break-word;"><a title="<?php echo $gotoTitle; ?>" <?php echo $gotoTarget; ?> href="<?php echo $klip->url; ?>"><?php echo $title; ?></a></h2>
 		<?php echo $klip_author; ?>
 		<h5 class="style" style="line-height:1;text-align:center">
-		<?php echo $reklip_info; ?><br />
+		<br />
 			<?php //echo $parent_tag; ?>
 			<span class="para info" style="font-size:11px;">
 			<?php //echo $tags; ?>
@@ -189,6 +189,7 @@ $birdy->pageImage($klip->thumbnail);
 		if (($klip->type!="klip-note" && $klip->type!="klip-photo") || ($user->isLoggedIn() && !strstr($title,$user->used_name))) echo "by <a href='".BIRDY_URL."klipper/".$klip_user->username."'>".stripslashes($klip_user->used_name)."</a>";
 		/*if ($birdy->browser=='web')*/ echo " on <a href='/?date=".strtotime($klip->creation_date)."'>".date("F d, Y",strtotime($klip->creation_date))."</a>";
 		echo "</span>";
+		echo $reklip_info;
 		?>
 		</span>
 		</h5>

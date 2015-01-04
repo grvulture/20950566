@@ -5,13 +5,13 @@ $birdy = birdyCMS::getInstance();
 $db = birdyDB::getInstance();
 $user = birdyUser::getInstance();
 //============================================================================
-include "page-parts".DS."doctype.php";
+include "..".DS."page-parts".DS."doctype.php";
 $birdy->pageTitle("Search | Klipsam");
 $birdy->pageDescription("Klip your thoughts. Klip your jam. Klipsam!");
 $birdy->pageImage(BIRDY_URL.'images/logo.jpg');
 //============================================================================
 if (isset($_POST['search_query'])) {
-	include("forms".DS."search.php");
+	include("..".DS."forms".DS."search.php");
 	return;
 }
 ?>

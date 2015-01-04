@@ -169,6 +169,15 @@ Class birdyConfig {
 		define("EMAIL_SMTP_PORT", 465);
 		// SMTP encryption, usually SMTP providers use "tls" or "ssl", for details see the PHPMailer manual
 		define("EMAIL_SMTP_ENCRYPTION", 'ssl');
+		/**
+		 * Other methods of email sending
+		 */
+		// mail()
+		define("EMAIL_USE_MAIL", false); //change this to true if it doesn't work on the server
+		// sendmail()
+		define("EMAIL_USE_SENDMAIL", true);
+		// Qmail
+		define("EMAIL_USE_QMAIL", false);
 
 		/**
 		* Configuration for: Email content data

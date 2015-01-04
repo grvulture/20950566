@@ -9,26 +9,33 @@ Class birdyMailer extends PHPMailer {
 	}
 	
 	public function Send($html=false) {
-        // please look into the config/config.php for much more info on how to use this!
-        if (EMAIL_USE_SMTP) {
-            // set PHPMailer to use SMTP
-            $this->IsSMTP();
-            // useful for debugging, shows full SMTP errors, config this in config/config.php
-            $this->SMTPDebug = PHPMAILER_DEBUG_MODE;
-            // enable SMTP authentication
-            $this->SMTPAuth = EMAIL_SMTP_AUTH;
-            // enable encryption, usually SSL/TLS
-            if (defined(EMAIL_SMTP_ENCRYPTION)) {
-                $this->SMTPSecure = EMAIL_SMTP_ENCRYPTION;
-            }
-            // set SMTP provider's credentials
-            $this->Host = EMAIL_SMTP_HOST;
-            $this->Username = EMAIL_SMTP_USERNAME;
-            $this->Password = EMAIL_SMTP_PASSWORD;
-            $this->Port = EMAIL_SMTP_PORT;
-        } else {
-            $this->IsMail();
-        }
+		// please look into the config/config.php for much more info on how to use this!
+		if (EMAIL_USE_SMTP) {
+		    // set PHPMailer to use SMTP
+		    $this->IsSMTP();
+		    // useful for debugging, shows full SMTP errors, config this in config/config.php
+		    $this->SMTPDebug = PHPMAILER_DEBUG_MODE;
+		    // enable SMTP authentication
+		    $this->SMTPAuth = EMAIL_SMTP_AUTH;
+		    // enable encryption, usually SSL/TLS
+		    if (defined(EMAIL_SMTP_ENCRYPTION)) {
+			$this->SMTPSecure = EMAIL_SMTP_ENCRYPTION;
+		    }
+		    // set SMTP provider's credentials
+		    $this->Host = EMAIL_SMTP_HOST;
+		    $this->Username = EMAIL_SMTP_USERNAME;
+		    $this->Password = EMAIL_SMTP_PASSWORD;
+		    $this->Port = EMAIL_SMTP_PORT;
+		}
+		elseif (EMAIL_USE_SENDMAIL) {
+		    $this->IsSendmail();
+		
+		} elseif (EMAIL_USE_QMAIL) {
+		    $this->IsQmail();
+		
+		} else {
+		    $this->IsMail();
+		}
 
 		if ($html) $this->Body = $this->msgHTML($this->Body);
 		return parent::send();

@@ -23,7 +23,7 @@ $birdy->pageImage(BIRDY_URL.'images/logo.jpg');
 	 	 <div class="contact">				
 				  <div class="contact-form">
 					<h2 class="style"><a href="#">Contact Us</a></h2>
-					    <form method="post" action="/sendmail">
+					    <form method="post" action="/sendcontactemail">
 					    	<div>
 						    	<span><label>NAME</label></span>
 						    	<span><input name="userName" type="text" class="textbox"></span>

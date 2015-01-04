@@ -5,7 +5,7 @@ $birdy = birdyCMS::getInstance();
 $db = birdyDB::getInstance();
 $user = birdyUser::getInstance();
 //============================================================================
-include "page-parts".DS."doctype.php";
+include "..".DS."page-parts".DS."doctype.php";
 $birdy->pageTitle("Delete! | Klipsam");
 $birdy->pageDescription("Klip your thoughts. Klip your jam. Klipsam!");
 $birdy->pageImage(BIRDY_URL.'images/logo.jpg');

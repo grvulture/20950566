@@ -1,7 +1,7 @@
 <?php
 defined('_BIRDY') or die(dirname(__FILE__).DS.__FILE__.': Restricted access');
 //============================================================================
-if ($birdy->current_page!='login') {
+if ($birdy->current_page!='login' && $birdy->current_page!='contact') {
 ?>
 <div class="footer-float hide">
 <?php
@@ -33,7 +33,7 @@ if ($birdy->current_page!='login') {
 	</div>
 </div>
 <?php
-if ($birdy->current_page!='login') {
+if ($birdy->current_page!='login' && $birdy->current_page!='contact') {
 ?>
 </div>
 <?php

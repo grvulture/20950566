@@ -85,8 +85,9 @@ Class birdyDB extends PDO {
 		return $query->fetchColumn();
 	}
 
-	public function count($table) {
-		$nRows = $this->query('select count(*) from '.$table)->fetchColumn(); 
+	public function count($table, $where=false) {
+		$where = ($where) ? " WHERE ".$where : "";
+		$nRows = $this->query('select count(*) from '.$table.$where)->fetchColumn(); 
 		return $nRows;
 	}
 	

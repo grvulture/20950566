@@ -1,6 +1,7 @@
 <?php
 defined('_BIRDY') or die(__FILE__.': Restricted access');
 //============================================================================
+// THIS IS USED FOR REKLIPING and MOBILE...
 if (!$user->isLoggedIn()) $user->id=0;
 
 	$klip_user = birdyUser::getInstance($klip->user_id);
@@ -33,16 +34,18 @@ if (!$user->isLoggedIn()) $user->id=0;
 	$klip_image_link = ($birdy->browser=='web') ? $klip->bignail : $klip_url;
 	//
 	if ($klip->type=="klip-photo" || $klip->type=="klip-note") {
-		$klip_image_style = $birdy->browser=='web' ? 'style="border-radius:100px;width:28%;"' : 'style="border-radius:50px;width:50px;height:50px;"'; 
+		$klip_image_style = $birdy->browser=='web' ? 'style="border-radius:100px;width:28%; max-height:68px;"' : 'style="border-radius:50px;width:50px;max-height:50px;"'; 
 		$lightbox = '<a href="/klipper/'.$klip_user->username.'">';
 	} else {
-		$klip_image_style = $birdy->browser=='web' ? '' : 'style="width:28%;"';
+		$klip_image_style = $birdy->browser=='web' ? 'style="width:28%; max-height:68px;"': 'style="width:28%; max-height:68px;"';
 		$lightbox = '<a href="'.$klip_image_link.'">';
 	}
-	$content = '
-	<div class="klip-image" '.$klip_image_style.'>'
-	.$lightbox.'<img data-original="'.$klip->thumbnail.'" style="width:100%" class="lazy klip-thumbnail" /></a>
-	</div>
+	if ($birdy->current_page=="embed") $klip_image_style = str_replace("max-height","nothing",$klip_image_style);
+	$content = '<div class="klip-image" '.$klip_image_style.'>';
+	if ($birdy->current_page!='reklip') $content.= $lightbox;
+	$content.= '<img src="'.$klip->thumbnail.'" style="width:100%" class="klip-thumbnail" />';
+	if ($birdy->current_page!='reklip') $content.= '</a>';
+	$content.= '</div>
 	<div style="float:right;width:66%">';
 	$content.= '
 		<h2 class="klip-heading"><a class="klip-header-link" style="font-size:13px;" href="'.$klip_url.'">'.$title.'</a></h2>';
