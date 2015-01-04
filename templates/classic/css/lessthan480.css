@@ -1,0 +1,38 @@
+div.popup-wrapper {
+	width: 250px !important;
+}
+div.klip-content {
+	/*height: 75px;*/
+	width: 90% !important;
+}
+.klip-heading {
+	font-size: 12px !important;
+}
+.klip-description {
+	font-size: 11px !important;
+}
+.klip-input {
+	width: 220px !important;
+}
+.sub_nav li a {
+	font-size: 14px;
+}
+a#loginPopup {
+	display:none;
+}
+a#loginRedirect {
+	display:inline;
+}
+div.rui-lightbox-body {
+	width:89%
+}
+div.intro {
+	height:21px;
+}
+div.comment-body {
+	font-size: 12px;
+}
+.comment-form-comment .klip-textarea {
+	font-size:11px;
+	height:40px;
+}

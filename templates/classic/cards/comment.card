@@ -1,0 +1,31 @@
+                                <li class="comment even thread-even depth-[depth]" id="li-comment-[article_id]">
+                                    <div id="comment-[comment_id]" class="comment-container">
+                                        <div class="comment-author vcard">
+                                            <div class="sphere"><img alt="" src="[gravatar]" class="avatar avatar-75 photo" height="42" width="42" /></div>
+                                            <div class="fn">
+												[user_name_linked]
+											</div>             
+                                        </div>
+                                        <!-- .comment-author .vcard -->
+                                        <div class="comment-meta commentmetadata">
+                                            <div class="intro">
+                                                <div class="commentDate">
+                                                    <a class="info" style="font-size:10px" href="#comment-[comment_id]">
+                                                    [date]</a>
+                                                </div>
+                                                <div class="commentNumber">#&nbsp;[comment_number]<br />[reply_icon]</div>
+                                            </div>
+                                            <div class="comment-body">
+                                                [comment_text]
+                                            </div>
+                                            <div class="reply group">
+                                                <a class="info comment-reply-link" href="[reply_link]">Reply</a>
+                                            </div>
+                                            <!-- .reply -->
+                                        </div>
+                                        <!-- .comment-meta .commentmetadata -->
+                                    </div>
+                                    <!-- #comment-##  -->
+                                </li>
+								[replies]
+								[reply_box]element="li" class="comment even thread-even depth-[depth]"[/reply_box]
